@@ -1,17 +1,14 @@
 import React from 'react';
 import './App.css';
 import Chat from './components/Chat'
+import Sockjs from 'sockjs-client';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      actions: sock,
-      messages: []
-  }
 
-    const sock = new SockJS('https://localhost:3000');
+    const sock = new Sockjs('https://localhost:3000');
 
     sock.onopen = () => {
         console.log('connection open');
@@ -25,11 +22,15 @@ class App extends React.Component {
         console.log('close')
     }
 
+    this.state = {
+      actions: sock,
+      messages: []
+  }
 }
   render() {
     return (
       <div className="App">
-        <Chat />
+        <Chat {... this.state }/>
       </div>
     );
   }
