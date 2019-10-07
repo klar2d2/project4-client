@@ -1,26 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
+ 
+import React, { Component } from 'react';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import 'react-dates/initialize';
+import 'react-dates/lib/css/_datepicker.css';
+
+import { SingleDatePicker } from 'react-dates';
+
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      date: null,
+      focused: null,
+    };
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <SingleDatePicker
+          date={this.state.date}
+          onDateChange={date => this.setState({ date })}
+          focused={this.state.focused}
+          onFocusChange={({ focused }) => this.setState({ focused })}
+          id="your_unique_id"
+        />
+      </div>
+    );
+  }
 }
 
 export default App;
