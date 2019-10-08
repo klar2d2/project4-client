@@ -7,37 +7,32 @@ class App extends React.Component {
     super();
     this.state = {
       endpoint: 'localhost:3001', 
-      message: []
-    }
+      messages: [], 
+      input: ''
+  }
 }
 
-send = () => {
-  const socket = socketIOClient(this.state.endpoint);
-  socket.emit('add message', this.state.message)
-}
-
-setMessage = (message) => {
-  this.setState({ message })
-}
-
-componentDidMount = () => {
-  const socket = socketIOClient(this.state.endpoint);
-  setInterval(this.send(), 1000)
-  socket.on('add message', (mssg) => {
-    document.body.style.backgroundColor = mssg
+formOnSubmit = (e) => {
+  e.preventDefault();
+  let messageArray = this.state.messages;
+  messageArray.push(e.target.value)
+  this.setState({
+    input: e.target.value
   })
+  const socket = socketIOClient(this.state.endpoint);
+  socket.emit('add message', this.state.input)
 }
-  render() {
 
+  render() {
     const socket = socketIOClient(this.state.endpoint)
     socket.on('add message', (mssg) => {
-      document.body.style.backgroundColor = mssg;
+      console.log(mssg)
     })
 
-    let messagesDiv = this.state.message.map((m, idx) => {
+    let messagesDiv = this.state.message.map((text, idx) => {
       return (
         <div key={idx}>
-          {m.message}
+          {text}
         </div>
       )
     })
@@ -46,8 +41,8 @@ componentDidMount = () => {
       <div className="App">
         <div style={{ textAlign: 'center'}}>
           {messagesDiv}
-          <form onSubmit = { () => this.send()}>
-            <input type="text" ref="message-text"/>
+          <form onSubmit = { this.formOnSubmit }>
+            <input type="text" ref="message-text" name="message-text"/>
             <input type="submit"/>
           </form>
         </div>
