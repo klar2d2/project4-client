@@ -9,7 +9,6 @@ class Chat extends Component {
           messages: ['Enter text here'], 
           input: '',
           socket: socketIOClient('localhost:3001'), 
-          goatId: null
       }
     }
 
@@ -17,7 +16,7 @@ class Chat extends Component {
             this.state.socket.on('add message', (mssg) => {
             console.log(mssg)
         })
-        this.callMessageDb()
+        this.callMessageDb(this.props.userId, this.props.goatId)
     }
 
     callMessageDb = (userId, goatId) => {
@@ -39,7 +38,7 @@ class Chat extends Component {
         e.preventDefault();
         let messageArray = this.state.messages;
         messageArray.push(this.state.input)
-        this.state.socket.emit('add message', this.state.input)
+        this.state.socket.emit('add message', this.state.input, this.props.userId, this.props.goatId)
     }
 
     updateReciever = (e) => {
@@ -66,10 +65,6 @@ class Chat extends Component {
             <div className="chat-container">
                 <div style={{ textAlign: 'center'}}>
                 {messagesDiv}
-                <form>
-                    <input type="text" onChange = {this.updateReciver}/>
-                    <input type="submit"/>
-                </form>
                 <form onSubmit = { this.formOnSubmit }>
                     <input type="text" name="input" onChange={ this.handleChange }/>
                     <input type="submit"/>
