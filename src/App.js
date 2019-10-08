@@ -1,12 +1,9 @@
  
 import React, { Component } from 'react';
 import './App.css';
-
-import 'react-dates/initialize';
-import 'react-dates/lib/css/_datepicker.css';
-
-import { SingleDatePicker } from 'react-dates';
-
+import { BrowserRouter as Router } from 'react-router-dom';
+import Nav from './Components/Subcomponents/Nav';
+import Content from './Components/Content';
 class App extends Component {
   constructor(props) {
     super(props);
@@ -18,15 +15,12 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <SingleDatePicker
-          date={this.state.date}
-          onDateChange={date => this.setState({ date })}
-          focused={this.state.focused}
-          onFocusChange={({ focused }) => this.setState({ focused })}
-          id="your_unique_id"
-        />
-      </div>
+      <Router>
+        <div className="App">
+          <Nav />
+          <Content />
+        </div>
+      </Router>
     );
   }
 }
