@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import socketIOClient from 'socket.io-client'
 import axios from 'axios'
+import SERVER_URL from '../constants'
 
 class Chat extends Component {
     constructor() {
@@ -9,6 +10,7 @@ class Chat extends Component {
           messages: ['Enter text here'], 
           input: '',
           socket: socketIOClient('localhost:3001'),
+          notify: ''
       }
     }
 
@@ -17,21 +19,26 @@ class Chat extends Component {
             let messageArray = this.state.messages;
             messageArray.push(mssg)
             this.setState({
-                messages: messageArray
+                messages: messageArray, 
+                notify: ''
+            })
+        })
+        this.state.socket.on('is typing', (userId) => {
+            this.setState({
+                notify: `${userId} is typing`
             })
         })
         this.callMessageDb(this.props.userId, this.props.goatId)
     }
 
     callMessageDb = (userId, goatId) => {
-        axios.get('/message', {
-            userId,
-            goatId
-        })
+        axios.get(`${SERVER_URL}/message`)
         .then(response => {
+            let messageArray = this.state.messages;
+            messageArray.push(response.data)
             console.log(response)
             this.setState({
-                messages: response.data
+                messages: messageArray
             })
         })
         .catch(err => {
@@ -41,20 +48,18 @@ class Chat extends Component {
 
     formOnSubmit = (e) => {
         e.preventDefault();
-        
         this.state.socket.emit('add message', this.state.input, this.props.userId, this.props.goatId)
-        
     }
 
     handleChange = (e) => {
         this.setState({
             [e.target.name]: e.target.value,
         })
-        this.state.socket.emit('is typing', this.state.userId)
+        this.state.socket.emit('is typing', this.props.userId)
     }
-
+    
     render() {
- 
+
     let messagesDiv = this.state.messages.map((text, idx) => {
       return (
         <div key={idx}>
@@ -64,8 +69,12 @@ class Chat extends Component {
     })
         return (
             <div className="chat-container">
+                <div>{this.state.notify}</div>
                 <div style={{ textAlign: 'center'}}>
-                {messagesDiv}
+                    <div className="message-display">
+                        {messagesDiv}
+                    </div>
+               
                 <form onSubmit = { this.formOnSubmit }>
                     <input type="text" name="input" onChange={ this.handleChange }/>
                     <input type="submit"/>

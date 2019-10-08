@@ -23,4 +23,13 @@
 
 .chat-container {
   border: 1px solid blue;
+  max-width: 40vw;
+  min-height: 40vh;
+  position: absolute;
+}
+
+.message-display {
+  border: 1px solid black;
+  background-color: rgb(224, 237, 240);
+  min-height: 30vh;
 }
