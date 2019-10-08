@@ -7,7 +7,7 @@ class App extends React.Component {
     super();
     this.state = {
       endpoint: 'localhost:3001', 
-      messages: [], 
+      messages: ['Enter text here'], 
       input: ''
   }
 }
@@ -17,22 +17,33 @@ formOnSubmit = (e) => {
   let messageArray = this.state.messages;
   messageArray.push(e.target.value)
   this.setState({
-    input: e.target.value
+    input: e.target.value,
   })
   const socket = socketIOClient(this.state.endpoint);
   socket.emit('add message', this.state.input)
 }
+
+setMessages = () => {
+  
+}
+
+componentDidUpdate(prevProps, prevState) {
+  if (this.state.messages !== prevState.messages) {
+      this.setMessages();
+  }
+}
+
 
   render() {
     const socket = socketIOClient(this.state.endpoint)
     socket.on('add message', (mssg) => {
       console.log(mssg)
     })
-
-    let messagesDiv = this.state.message.map((text, idx) => {
+    
+    let messagesDiv = this.state.messages.map((text, idx) => {
       return (
         <div key={idx}>
-          {text}
+          <p>{text}</p>
         </div>
       )
     })
