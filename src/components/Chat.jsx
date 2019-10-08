@@ -7,7 +7,7 @@ class Chat extends Component {
     constructor() {
         super();
         this.state = {
-          messages: ['Enter text here'], 
+          messages: [], 
           input: '',
           socket: socketIOClient('localhost:3001'),
           notify: ''
@@ -32,11 +32,15 @@ class Chat extends Component {
     }
 
     callMessageDb = (userId, goatId) => {
-        axios.get(`${SERVER_URL}/message`)
+        axios.get(`${SERVER_URL}/message`, {
+            userId, 
+            goatId
+        })
         .then(response => {
             let messageArray = this.state.messages;
-            messageArray.push(response.data)
-            console.log(response)
+            for(let i = 0; i < response.data.length; i++){
+                messageArray.push(response.data[i].message)
+            }
             this.setState({
                 messages: messageArray
             })
@@ -69,21 +73,24 @@ class Chat extends Component {
     })
         return (
             <div className="chat-container">
-                <div>{this.state.notify}</div>
+                
                 <div style={{ textAlign: 'center'}}>
                     <div className="message-display">
                         {messagesDiv}
+                        <div className="chat-notify">
+                        <p><em>{this.state.notify}</em></p>
+                        </div>
                     </div>
-               
-                <form onSubmit = { this.formOnSubmit }>
-                    <input type="text" name="input" onChange={ this.handleChange }/>
-                    <input type="submit"/>
-                </form>
+                    <div className="chat-submit-form">
+                        <form onSubmit = { this.formOnSubmit }>
+                            <input id="chat-input" type="text" name="input" onChange={ this.handleChange }/>
+                            <input type="submit"/>
+                        </form>
+                    </div>
                 </div>
             </div>
         )
     }
 }
-
 
 export default Chat

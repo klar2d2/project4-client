@@ -33,3 +33,12 @@
   background-color: rgb(224, 237, 240);
   min-height: 30vh;
 }
+
+#chat-input {
+  height: 5vh;
+}
+
+.chat-notify {
+  position: absolute;
+  bottom: 55px;
+}
