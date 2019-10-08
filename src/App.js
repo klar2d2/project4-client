@@ -15,12 +15,17 @@ class App extends React.Component {
 formOnSubmit = (e) => {
   e.preventDefault();
   let messageArray = this.state.messages;
-  messageArray.push(e.target.value)
-  this.setState({
-    input: e.target.value,
-  })
+  messageArray.push(this.state.input)
+  
   const socket = socketIOClient(this.state.endpoint);
   socket.emit('add message', this.state.input)
+}
+
+
+handleChange = (e) => {
+  this.setState({
+    [e.target.name]: e.target.value,
+  })
 }
 
 setMessages = () => {
@@ -53,7 +58,7 @@ componentDidUpdate(prevProps, prevState) {
         <div style={{ textAlign: 'center'}}>
           {messagesDiv}
           <form onSubmit = { this.formOnSubmit }>
-            <input type="text" ref="message-text" name="message-text"/>
+            <input type="text" name="input" onChange={ this.handleChange }/>
             <input type="submit"/>
           </form>
         </div>
