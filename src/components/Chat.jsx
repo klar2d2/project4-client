@@ -8,23 +8,28 @@ class Chat extends Component {
         this.state = {
           messages: ['Enter text here'], 
           input: '',
-          socket: socketIOClient('localhost:3001'), 
+          socket: socketIOClient('localhost:3001'),
       }
     }
 
     componentDidMount(){
-            this.state.socket.on('add message', (mssg) => {
-            console.log(mssg)
+        this.state.socket.on('add message', (mssg) => {
+            let messageArray = this.state.messages;
+            messageArray.push(mssg)
+            this.setState({
+                messages: messageArray
+            })
         })
         this.callMessageDb(this.props.userId, this.props.goatId)
     }
 
     callMessageDb = (userId, goatId) => {
-        axios.get('/messages', {
+        axios.get('/message', {
             userId,
             goatId
         })
         .then(response => {
+            console.log(response)
             this.setState({
                 messages: response.data
             })
@@ -36,24 +41,20 @@ class Chat extends Component {
 
     formOnSubmit = (e) => {
         e.preventDefault();
-        let messageArray = this.state.messages;
-        messageArray.push(this.state.input)
+        
         this.state.socket.emit('add message', this.state.input, this.props.userId, this.props.goatId)
-    }
-
-    updateReciever = (e) => {
-        this.setState({
-            [e.target.name]: e.target.value
-        })
+        
     }
 
     handleChange = (e) => {
         this.setState({
             [e.target.name]: e.target.value,
         })
+        this.state.socket.emit('is typing', this.state.userId)
     }
-    render() {
 
+    render() {
+ 
     let messagesDiv = this.state.messages.map((text, idx) => {
       return (
         <div key={idx}>
@@ -74,5 +75,6 @@ class Chat extends Component {
         )
     }
 }
+
 
 export default Chat
