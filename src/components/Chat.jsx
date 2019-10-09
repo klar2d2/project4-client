@@ -1,19 +1,21 @@
 import React, { Component } from 'react';
 import io from 'socket.io-client'
 import axios from 'axios'
-import SERVER_URL from '../constants'
+import SERVER from '../constants'
+import LOCAL_HOST from '../constants'
 
 class Chat extends Component {
     constructor(props) {
         super(props);
-        const goatId = this.props.goatId
-        
+        let goatId = this.props.location.state.goatId;
+        let userId = this.props.location.state.userId;
         this.state = {
           messages: [], 
           input: '',
-          socket: io(`localhost:3001/${goatId}`),
+          socket: io(`${LOCAL_HOST}/${goatId}-${userId}`),
           notify: ''
       }
+      console.log(`${LOCAL_HOST}/${goatId}-${userId}`)
     }
 
     componentDidMount(){
@@ -34,7 +36,7 @@ class Chat extends Component {
     }
 
     callMessageDb = (userId, goatId) => {
-        axios.get(`${SERVER_URL}/message`, {
+        axios.get(LOCAL_HOST + 'message', {
             userId, 
             goatId
         })
@@ -54,7 +56,7 @@ class Chat extends Component {
 
     formOnSubmit = (e) => {
         e.preventDefault();
-        this.state.socket.emit('add message', this.state.input, this.props.userId, this.props.goatId)
+        this.state.socket.emit('add message', this.state.input, this.props.userId)
     }
 
     handleChange = (e) => {
@@ -68,8 +70,8 @@ class Chat extends Component {
 
     let messagesDiv = this.state.messages.map((text, idx) => {
       return (
-        <div key={idx}>
-          <p>{text}</p>
+        <div className="all-messages" key={idx}>
+          <div>{text}</div>
         </div>
       )
     })
@@ -85,6 +87,8 @@ class Chat extends Component {
                     </div>
                     <div className="chat-submit-form">
                         <form onSubmit = { this.formOnSubmit }>
+                            <label htmlFor="chat-sender">User Name</label>
+                            <input id="chat-sender" type="hidden" name="chat-sender" value={this.props.userId}/>
                             <input id="chat-input" type="text" name="input" onChange={ this.handleChange }/>
                             <input type="submit"/>
                         </form>

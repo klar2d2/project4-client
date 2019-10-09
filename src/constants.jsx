@@ -34,3 +34,7 @@ export const DELETE_REVIEW = (reviewsId) => {
 export const GET_USER = (userId) => {
   return SERVER + `user/${userId}`
 }
+
+export const LOCAL_HOST = 'http://localhost:3001/';
+
+

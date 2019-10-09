@@ -29,25 +29,32 @@ nav {
 }
 
 .chat-container {
-  border: 1px solid blue;
-  max-width: 40vw;
-  min-height: 40vh;
-  position: absolute;
+  border: 1px solid red;
+  max-width: 100vw;
+  max-height: 50vh;
+  display: flex;
+  align-items: center;
+}
+.all-messages {
+  max-height: 5vh;
 }
 
 .message-display {
   border: 1px solid black;
+  max-height: 40vh;
   background-color: rgb(224, 237, 240);
-  min-height: 30vh;
+}
+
+.chat-notify {
+  position: relative;
+  max-height: 40px;
+  bottom: -150px;
 }
 
 #chat-input {
   height: 5vh;
 }
 
-.chat-notify {
-  position: absolute;
-  bottom: 55px;
 .hero {
   width: 100%;
   height: 100%;
