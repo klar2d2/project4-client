@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
-import socketIOClient from 'socket.io-client'
+import io from 'socket.io-client'
 import axios from 'axios'
 import SERVER_URL from '../constants'
 
 class Chat extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
+        const goatId = this.props.goatId
+        
         this.state = {
           messages: [], 
           input: '',
-          socket: socketIOClient('localhost:3001'),
+          socket: io(`localhost:3001/${goatId}`),
           notify: ''
       }
     }
