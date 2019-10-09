@@ -1,24 +1,31 @@
-.App {
+html, body, div {
+  width: 100%;
+  height: 100%;
+}
+nav span{
+  margin: 5px 0px 5px 0px;
+}
+
+nav a {
+  text-decoration: none;
+}
+
+nav {
+  background-color: grey;
+  height: 50px;
+  display: grid;
+  justify-items: left;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #09d3ac;
+@media (min-width: 30rem){
+  nav {
+    grid-template-columns: 1fr auto auto auto auto;
+    justify-items: start;
+  }
+  nav span{
+    margin: 0px 5px 0px 5px;
+  }
 }
 
 .chat-container {
@@ -41,4 +48,10 @@
 .chat-notify {
   position: absolute;
   bottom: 55px;
+.hero {
+  width: 100%;
+  height: 100%;
+  background-image: url('http://placehold.jp/1600x900.png');
+  background-repeat: no-repeat;
+  background-size: cover;
 }
