@@ -7,7 +7,7 @@ import Messages from './Pages/Messages';
 import Profile from './Pages/Profile';
 import Login from './Pages/Login';
 
-import Chat from './Chat'
+import Chat from './Subcomponents/Chat'
 
 class Content extends Component {
   render(){
