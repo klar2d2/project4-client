@@ -7,6 +7,7 @@ import Messages from './Pages/Messages';
 import Profile from './Pages/Profile';
 import Login from './Pages/Login';
 
+import Chat from './Chat'
 
 class Content extends Component {
   render(){
@@ -22,6 +23,7 @@ class Content extends Component {
         <Route path='/login' render={
             () => <Login user={this.props.user} refreshUser={this.props.refreshUser} />
           } />
+        <Route path='/chat' component={Chat} />
       </div>
 
     );
