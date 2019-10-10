@@ -15,7 +15,6 @@ class Chat extends Component {
           socket: io(`${LOCAL_HOST}/${goatId}-${userId}`),
           notify: ''
       }
-      console.log(`${LOCAL_HOST}/${goatId}-${userId}`)
     }
 
     componentDidMount(){
@@ -32,7 +31,7 @@ class Chat extends Component {
                 notify: `${userId} is typing`
             })
         })
-        this.callMessageDb(this.props.userId, this.props.goatId)
+        this.callMessageDb(this.props.location.state.userId, this.props.location.state.goatId)
     }
 
     callMessageDb = (userId, goatId) => {
@@ -56,14 +55,14 @@ class Chat extends Component {
 
     formOnSubmit = (e) => {
         e.preventDefault();
-        this.state.socket.emit('add message', this.state.input, this.props.userId)
+        this.state.socket.emit('add message', this.state.input, this.props.location.state.userId, this.props.location.state.goatId)
     }
 
     handleChange = (e) => {
         this.setState({
             [e.target.name]: e.target.value,
         })
-        this.state.socket.emit('is typing', this.props.userId)
+        this.state.socket.emit('is typing', this.props.location.state.userId)
     }
     
     render() {
