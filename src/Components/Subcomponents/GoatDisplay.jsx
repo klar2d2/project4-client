@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 
+
 class GoatDisplay extends Component {
-  render(){
-    return(
-      <div>GoatDisplay</div>
+  render() {
+    console.log(this.props.goat)
+    return (
+      <div>{this.props.goat.firstname}</div>
     );
   }
 }
