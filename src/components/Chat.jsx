@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import io from 'socket.io-client'
 import axios from 'axios'
 import SERVER from '../constants'
-import LOCAL_HOST from '../constants'
+import {LOCAL_HOST} from '../constants'
 
 class Chat extends Component {
     constructor(props) {
@@ -10,10 +10,10 @@ class Chat extends Component {
         let recipient = this.props.location.state.recipient;
         let currentUser = this.props.location.state.currentUser;
         this.state = {
-          messages: [], 
+          messages: [],
           input: '',
           socket: io(`${LOCAL_HOST}/${recipient}-${currentUser}`),
-          notify: '', 
+          notify: '',
       }
     }
 
@@ -22,7 +22,7 @@ class Chat extends Component {
             let messageArray = this.state.messages;
             messageArray.push(mssg)
             this.setState({
-                messages: messageArray, 
+                messages: messageArray,
                 notify: ''
             })
         })
@@ -36,7 +36,7 @@ class Chat extends Component {
 
     callMessageDb = (currentUser, recipient) => {
         axios.get(LOCAL_HOST + 'message', {
-            currentUser, 
+            currentUser,
             recipient
         })
         .then(response => {
@@ -68,7 +68,7 @@ class Chat extends Component {
         })
         this.state.socket.emit('is typing', this.props.location.state.currentUser)
     }
-    
+
     render() {
 
     let messagesDiv = this.state.messages.map((text, idx) => {
@@ -80,7 +80,7 @@ class Chat extends Component {
     })
         return (
             <div className="chat-container">
-                
+
                 <div style={{ textAlign: 'center'}}>
                     <div className="message-display">
                         {messagesDiv}
