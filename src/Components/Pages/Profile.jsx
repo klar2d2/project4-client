@@ -50,15 +50,14 @@ class Profile extends Component {
             user={this.props.user}
           />
         </div>
+        <div>Profile
+          <form onSubmit={this.handleSubmit}>
+            <label htmlFor="submit-chat">Chat with me!</label>
+            <input id="submit-chat" type="submit"/>
+          </form>
+          {this.renderRedirect()}
+        </div>
       </div>
-      <div>Profile
-        <form onSubmit={this.handleSubmit}>
-          <label htmlFor="submit-chat">Chat with me!</label>
-          <input id="submit-chat" type="submit"/>
-        </form>
-        {this.renderRedirect()}
-      </div>
-
     );
   }
 }
