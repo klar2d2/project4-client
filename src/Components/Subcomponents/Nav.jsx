@@ -2,6 +2,12 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 class Nav extends Component {
+  logoutUser = (e) => {
+    e.preventDefault();
+    localStorage.removeItem("mernToken");
+    this.props.refreshUser();
+  }
+
   render(){
     return(
       <nav>
@@ -18,7 +24,10 @@ class Nav extends Component {
           <Link to="/profile">Profile</Link>
         </span>
         <span>
-          Signout
+          <Link to="/login">Login</Link>
+        </span>
+        <span>
+          <a href="/" onClick={this.logoutUser}>Logout</a>
         </span>
       </nav>
     );

@@ -5,6 +5,7 @@ import Browse from './Pages/Browse';
 import Goat from './Pages/Goat';
 import Messages from './Pages/Messages';
 import Profile from './Pages/Profile';
+import Login from './Pages/Login';
 
 
 class Content extends Component {
@@ -15,7 +16,12 @@ class Content extends Component {
         <Route path='/browse' component={Browse} />
         <Route path='/goat/:goatId' component={Goat} />
         <Route path='/messages' component={Messages} />
-        <Route path='/profile' component={Profile} />
+        <Route path='/profile' render={
+            () => <Profile user={this.props.user} />
+          } />
+        <Route path='/login' render={
+            () => <Login user={this.props.user} refreshUser={this.props.refreshUser} />
+          } />
       </div>
 
     );
