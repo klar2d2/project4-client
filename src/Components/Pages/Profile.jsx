@@ -1,6 +1,7 @@
 import React, { Component, Suspense } from 'react';
 import Appointments from '../Subcomponents/Appointments'
 import { Redirect } from 'react-router-dom'
+
 import axios from 'axios';
 import { LOCAL_HOST } from '../../constants'
 import moment from 'moment'
@@ -31,8 +32,8 @@ class Profile extends Component {
   renderRedirect = () => {
     if (this.state.redirect) {
       return <Redirect to={{
-        pathname: '/chat',
-        state: { recipient: this.state.goatId, user: this.state.user._id }
+        pathname: '/messages',
+        state: { recipient: this.state.goatId, user: this.state.user }
       }} />
     }
   }

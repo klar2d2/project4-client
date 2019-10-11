@@ -1,6 +1,6 @@
 export const SERVER = 'https://peaceful-escarpment-58515.herokuapp.com';
 // export const SERVER = 'http://localhost:3001';
-
+export const LOCALHOST = 'http://localhost:3001/';
 export const SIGNUP = SERVER + '/auth/signup';
 export const LOGIN = SERVER + '/auth/login';
 export const CURRENT_USER = SERVER + '/auth/current/user';
@@ -37,6 +37,6 @@ export const GET_USER = (userId) => {
 }
 export const GET_GOATS = SERVER + '/user/goats'
 
-export const LOCAL_HOST = 'http://localhost:3001/';
+
 
 
