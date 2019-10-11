@@ -9,9 +9,12 @@ class Chat extends Component {
         this.state = {
             messages: [],
             input: '',
-            socket: '',
             notify: '',
+            socket: '',
         }
+    }
+    componentWillUnmount(){
+
     }
 
     componentDidMount() {
@@ -30,27 +33,27 @@ class Chat extends Component {
         axios.post(LOCALHOST + `chat`, { user, recipient })
             .then(response => {
                 console.log(response)
+                const socket = io(`${LOCALHOST}${user}-${recipient}`, {'forceNew':false, reconnection: true});
+                socket.on('add message', (mssg) => {
+                    let messageArray = this.state.messages;
+                    messageArray.push(mssg)
+                    this.setState({
+                        messages: messageArray,
+                        notify: ''
+                    })
+                })
+                socket.on('is typing', (currentUser) => {
+                    this.setState({
+                        notify: `${currentUser} is typing`
+                    })
+                })
+                this.callMessageDb(this.props.user._id, this.props.recipient)
+                this.setState({socket})
             })
             .catch(err => {
                 console.log(err)
             })
            
-        const socket = io(`${LOCALHOST}${user}-${recipient}`)
-        socket.on('add message', (mssg) => {
-            let messageArray = this.state.messages;
-            messageArray.push(mssg)
-            this.setState({
-                messages: messageArray,
-                notify: ''
-            })
-        })
-        socket.on('is typing', (currentUser) => {
-            this.setState({
-                notify: `${currentUser} is typing`
-            })
-        })
-        this.callMessageDb(this.props.user._id, this.props.recipient)
-        this.setState({socket})
     }
 
     callMessageDb = (currentUser, recipient) => {
