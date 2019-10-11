@@ -13,9 +13,6 @@ class Chat extends Component {
             socket: '',
         }
     }
-    componentWillUnmount(){
-
-    }
 
     componentDidMount() {
         let recipient;
