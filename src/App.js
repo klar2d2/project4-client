@@ -31,7 +31,6 @@ class App extends Component {
         headers: {'Authorization': `Bearer ${token}` }
       })
       .then(response => {
-        console.log(response.data.user)
         this.setState({ user: response.data.user })
       })
       .catch(err => {

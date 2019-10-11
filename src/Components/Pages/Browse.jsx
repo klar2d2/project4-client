@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import Map from '../Subcomponents/Map';
 import GoatDisplay from '../Subcomponents/GoatDisplay';
 import { GET_GOATS } from '../../constants';
 
@@ -14,7 +15,6 @@ class Browse extends Component {
   componentDidMount() {
     axios.get(GET_GOATS)
       .then((response) => {
-        console.log('success')
         this.setState({ goats: response.data.users })
       })
       .catch((err) => {
@@ -23,9 +23,15 @@ class Browse extends Component {
   }
   render() {
     const goatDisplays = this.state.goats.map((goat) => <GoatDisplay goat={goat} key={goat._id} />)
-    console.log(goatDisplays)
     return (
-      <div>{goatDisplays}</div>
+      <div className="browse-display">
+        <div className="goats-display">
+          {goatDisplays}
+        </div>
+        <div className="map-container">
+          <Map goats={this.state.goats}/>
+        </div>
+      </div>
     );
   }
 }
