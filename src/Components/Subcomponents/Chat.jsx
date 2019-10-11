@@ -26,7 +26,6 @@ class Chat extends Component {
             user = this.props.user._id
             recipient = this.props.recipient
         }
-        console.log(user, recipient)
         this.callMessageDb(user, recipient) 
         this.socket = io(LOCALHOST, { query: `room=${user}-${recipient}`});
         this.socket.on('add message', (mssg) => {
@@ -50,10 +49,7 @@ class Chat extends Component {
 
 
     callMessageDb = (currentUser, recipient) => {
-        axios.get(LOCALHOST + 'message', {
-            currentUser,
-            recipient
-        })
+        axios.get(LOCALHOST + `message/${currentUser}/${recipient}`)
         .then(response => {
             console.log(response);
             let messageArray = this.state.messages;
@@ -94,7 +90,6 @@ class Chat extends Component {
         })
         return (
             <div className="chat-container">
-
                 <div style={{ textAlign: 'center' }}>
                     <div className="message-display">
                         {messagesDiv}
