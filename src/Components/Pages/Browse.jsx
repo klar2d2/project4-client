@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 import Map from '../Subcomponents/Map';
 import GoatDisplay from '../Subcomponents/GoatDisplay';
@@ -21,8 +22,14 @@ class Browse extends Component {
         console.log(err)
       })
   }
+
+  goToGoat = (goat) => {
+
+  }
   render() {
-    const goatDisplays = this.state.goats.map((goat) => <GoatDisplay goat={goat} key={goat._id} />)
+    const goatDisplays = this.state.goats.map((goat) => {
+      <GoatDisplay goat={goat} key={goat._id}}
+        />})
     return (
       <div className="browse-display">
         <div className="goats-display">
