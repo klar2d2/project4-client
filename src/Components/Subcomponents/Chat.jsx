@@ -9,32 +9,26 @@ class Chat extends Component {
         this.state = {
             messages: [],
             input: '',
-            socket: '',
             notify: '',
+            socket: '',
         }
+        this.socket = null;
     }
-
+    
     componentDidMount() {
-        let goatId
-        let userId
-        if (this.props.location.state.user.isGoat) {
-            goatId = this.props.location.state.user._id
-            userId = this.props.location.state.recipient
+        let recipient;
+        let user;
+        if (this.props.user.isGoat) {
+            recipient = this.props.user._id
+            user = this.props.recipient
         }
         else {
-            userId = this.props.location.state.user._id
-            goatId = this.props.location.state.recipient
+            user = this.props.user._id
+            recipient = this.props.recipient
         }
-        console.log(goatId, userId)
-        axios.post(SERVER + `/chat`, { userId, goatId })
-            .then(response => {
-                console.log(response)
-            })
-            .catch(err => {
-                console.log(err)
-            })
-        const socket = io(`${SERVER}/${userId}-${goatId}`)
-        socket.on('add message', (mssg) => {
+        this.callMessageDb(user, recipient) 
+        this.socket = io(LOCALHOST, { query: `room=${user}-${recipient}`});
+        this.socket.on('add message', (mssg) => {
             let messageArray = this.state.messages;
             messageArray.push(mssg)
             this.setState({
@@ -42,49 +36,47 @@ class Chat extends Component {
                 notify: ''
             })
         })
-        socket.on('is typing', (currentUser) => {
+        this.socket.on('is typing', (currentUser) => {
             this.setState({
                 notify: `${currentUser} is typing`
             })
         })
-        this.callMessageDb(this.props.location.state.user._id, this.props.location.state.recipient)
-        this.setState({socket})
+    }
+    componentWillUnmount(){
+        console.log('I moved away babay')
+        this.socket.emit('end')
     }
 
+
     callMessageDb = (currentUser, recipient) => {
-        axios.get(SERVER + '/message', {
-            currentUser,
-            recipient
+        axios.get(LOCALHOST + `message/${currentUser}/${recipient}`)
+        .then(response => {
+            console.log(response);
+            let messageArray = this.state.messages;
+            for (let i = 0; i < response.data.length; i++) {
+                messageArray.push(response.data[i].message)
+            }
+            this.setState({
+                messages: messageArray
+            })
         })
-            .then(response => {
-                let messageArray = this.state.messages;
-                for (let i = 0; i < response.data.length; i++) {
-                    messageArray.push(response.data[i].message)
-                }
-                this.setState({
-                    messages: messageArray
-                })
-            })
-            .catch(err => {
-                console.log(err)
-            })
+        .catch(err => {
+            console.log(err)
+        })
     }
 
     formOnSubmit = (e) => {
         e.preventDefault();
-        console.log(this.props.location.state.user)
-        this.state.socket.emit('add message', this.state.input, this.props.location.state.user, this.props.location.state.recipient)
-        this.setState({
-            tag: false
-        })
+        console.log(this.props.recipient, this.props.user._id)
+       
+        this.socket.emit('add message', this.state.input, this.props.user._id, this.props.recipient)
     }
 
     handleChange = (e) => {
         this.setState({
             [e.target.name]: e.target.value,
-            tag: true
         })
-        this.state.socket.emit('is typing', this.props.location.state.user)
+        this.socket.emit('is typing', this.props.user)
     }
 
     render() {
@@ -98,7 +90,6 @@ class Chat extends Component {
         })
         return (
             <div className="chat-container">
-
                 <div style={{ textAlign: 'center' }}>
                     <div className="message-display">
                         {messagesDiv}

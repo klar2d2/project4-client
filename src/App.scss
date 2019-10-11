@@ -36,21 +36,39 @@ nav {
   }
 }
 
+.chat-app {
+  margin: 0 auto;
+  padding: 30px 50px;
+}
+.chat-wrap {
+  -webkit-box-shadow: 3px 3px 5px 6px #ccc;
+  -moz-box-shadow:    3px 3px 5px 6px #ccc;
+  box-shadow:         3px 3px 5px 6px #ccc;
+  display: flex;
+}
 .chat-container {
-  border: 1px solid red;
+  border: 1px solid brown;
   max-width: 100vw;
   max-height: 50vh;
   display: flex;
   align-items: center;
+
 }
 .all-messages {
   max-height: 5vh;
 }
-
 .message-display {
+  overflow: scroll;
   border: 1px solid black;
-  max-height: 40vh;
+  min-height: 35vh;
+  max-height: 35vh;
   background-color: rgb(224, 237, 240);
+}
+
+.chat-list {
+  height: 40vh;
+  max-width: 30vw;
+  background-color: rgba(0, 255, 208, 0.345);
 }
 
 .chat-notify {
@@ -63,10 +81,6 @@ nav {
   height: 5vh;
 }
 
-.chat-notify {
-  position: absolute;
-  bottom: 55px;
-}
 
 .hero {
   width: 100%;
@@ -74,10 +88,6 @@ nav {
   background-image: url('http://placehold.jp/1600x900.png');
   background-repeat: no-repeat;
   background-size: cover;
-}
-
-.login-form {
-
 }
 
 .bg-video__content {
