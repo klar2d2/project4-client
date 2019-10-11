@@ -26,7 +26,8 @@ class Chat extends Component {
             user = this.props.user._id
             recipient = this.props.recipient
         }
-        console.log(recipient, user) 
+        console.log(user, recipient)
+        this.callMessageDb(user, recipient) 
         this.socket = io(LOCALHOST, { query: `room=${user}-${recipient}`});
         this.socket.on('add message', (mssg) => {
             let messageArray = this.state.messages;
@@ -41,8 +42,6 @@ class Chat extends Component {
                 notify: `${currentUser} is typing`
             })
         })
-
-        this.callMessageDb(user, recipient)
     }
     componentWillUnmount(){
         console.log('I moved away babay')
@@ -55,19 +54,19 @@ class Chat extends Component {
             currentUser,
             recipient
         })
-            .then(response => {
-                console.log(response);
-                let messageArray = this.state.messages;
-                for (let i = 0; i < response.data.length; i++) {
-                    messageArray.push(response.data[i].message)
-                }
-                this.setState({
-                    messages: messageArray
-                })
+        .then(response => {
+            console.log(response);
+            let messageArray = this.state.messages;
+            for (let i = 0; i < response.data.length; i++) {
+                messageArray.push(response.data[i].message)
+            }
+            this.setState({
+                messages: messageArray
             })
-            .catch(err => {
-                console.log(err)
-            })
+        })
+        .catch(err => {
+            console.log(err)
+        })
     }
 
     formOnSubmit = (e) => {
