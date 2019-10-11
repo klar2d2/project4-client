@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios'
+import { Redirect } from "react-router-dom";
+import {LOGIN} from '../../constants'
+
 
 class Login extends Component {
 
@@ -9,10 +12,10 @@ class Login extends Component {
     message: ''
   }
 
-  submitLogin= (e) => {
+  submitLogin = (e) => {
     e.preventDefault();
     console.log(this.state)
-    axios.post('https://peaceful-escarpment-58515.herokuapp.com/auth/login', this.state)
+    axios.post(LOGIN, this.state)
     .then((response) => {
       localStorage.setItem("mernToken", response.data.token);
       this.props.refreshUser();
@@ -28,6 +31,9 @@ class Login extends Component {
 
 
   render(){
+    if (this.props.user) {
+      return(<Redirect to='/browse' />)
+    }
     return(
       <div>
         Login

@@ -10,13 +10,17 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      userId: 13254, 
+      userId: 13254,
       goatId: 43253,
       date: null,
       focused: null,
       user: null
     };
   }
+
+    componentDidMount() {
+      this.getUser()
+    }
 
   getUser = () => {
     //see if theres a token
@@ -36,17 +40,13 @@ class App extends Component {
     else {
       this.setState({ user: null })
     }
-  }
-
-  componentDidMount() {
-    this.getUser()
-  }
+  };
 
   render() {
     return (
       <Router>
         <div className="App">
-          <Nav refreshUser={this.getUser} />
+          <Nav refreshUser={this.getUser} user={this.state.user} />
           <Content user={this.state.user} refreshUser={this.getUser} />
         </div>
       </Router>
