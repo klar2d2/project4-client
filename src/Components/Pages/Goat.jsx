@@ -42,6 +42,11 @@ class Goat extends Component {
 
     return(
       <div>
+        <div className='profile-container-left'>
+          <h2>{this.props.user.firstname}</h2>
+          <h2>{this.props.user.lastname}</h2>
+          <h2>{this.props.user.email}</h2>
+        </div>
         <Calendar appointments={[moment(), moment().add(10, 'days')]} />
         <Reviews />
       </div>
