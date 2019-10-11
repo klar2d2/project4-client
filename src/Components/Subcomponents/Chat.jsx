@@ -84,7 +84,7 @@ class Chat extends Component {
         let messagesDiv = this.state.messages.map((text, idx) => {
             return (
                 <div className="all-messages" key={idx}>
-                    <div>{text}</div>
+                    <div className="message-block">{text}</div>
                 </div>
             )
         })
