@@ -12,12 +12,12 @@ class Chat extends Component {
             notify: '',
             socket: '',
         }
+        this.socket = null;
     }
-
+    
     componentDidMount() {
         let recipient;
         let user;
-        // console.log(this.props.user)
         if (this.props.user.isGoat) {
             recipient = this.props.user._id
             user = this.props.recipient
@@ -26,32 +26,29 @@ class Chat extends Component {
             user = this.props.user._id
             recipient = this.props.recipient
         }
-        console.log(recipient, user)
-        axios.post(LOCALHOST + `chat`, { user, recipient })
-            .then(response => {
-                console.log(response)
-                const socket = io(`${LOCALHOST}${user}-${recipient}`, {'forceNew':false, reconnection: true});
-                socket.on('add message', (mssg) => {
-                    let messageArray = this.state.messages;
-                    messageArray.push(mssg)
-                    this.setState({
-                        messages: messageArray,
-                        notify: ''
-                    })
-                })
-                socket.on('is typing', (currentUser) => {
-                    this.setState({
-                        notify: `${currentUser} is typing`
-                    })
-                })
-                this.callMessageDb(this.props.user._id, this.props.recipient)
-                this.setState({socket})
+        console.log(recipient, user) 
+        this.socket = io(LOCALHOST, { query: `room=${user}-${recipient}`});
+        this.socket.on('add message', (mssg) => {
+            let messageArray = this.state.messages;
+            messageArray.push(mssg)
+            this.setState({
+                messages: messageArray,
+                notify: ''
             })
-            .catch(err => {
-                console.log(err)
+        })
+        this.socket.on('is typing', (currentUser) => {
+            this.setState({
+                notify: `${currentUser} is typing`
             })
-           
+        })
+
+        this.callMessageDb(user, recipient)
     }
+    componentWillUnmount(){
+        console.log('I moved away babay')
+        this.socket.emit('end')
+    }
+
 
     callMessageDb = (currentUser, recipient) => {
         axios.get(LOCALHOST + 'message', {
@@ -59,6 +56,7 @@ class Chat extends Component {
             recipient
         })
             .then(response => {
+                console.log(response);
                 let messageArray = this.state.messages;
                 for (let i = 0; i < response.data.length; i++) {
                     messageArray.push(response.data[i].message)
@@ -76,14 +74,14 @@ class Chat extends Component {
         e.preventDefault();
         console.log(this.props.recipient, this.props.user._id)
        
-        this.state.socket.emit('add message', this.state.input, this.props.user._id, this.props.recipient)
+        this.socket.emit('add message', this.state.input, this.props.user._id, this.props.recipient)
     }
 
     handleChange = (e) => {
         this.setState({
             [e.target.name]: e.target.value,
         })
-        this.state.socket.emit('is typing', this.props.user)
+        this.socket.emit('is typing', this.props.user)
     }
 
     render() {
