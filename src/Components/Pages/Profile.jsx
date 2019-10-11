@@ -1,6 +1,12 @@
-import React, { Component } from 'react';
+import React, { Component, Suspense } from 'react';
 import Appointments from '../Subcomponents/Appointments'
 import { Redirect } from 'react-router-dom'
+<<<<<<< HEAD
+=======
+import axios from 'axios';
+import { LOCAL_HOST } from '../../constants'
+import moment from 'moment'
+>>>>>>> a342b0a367a616082560c25730fc42cc6fe02f4e
 
 class Profile extends Component {
 
@@ -33,14 +39,33 @@ class Profile extends Component {
       }} />
     }
   }
-  render() {
-    console.log(this.state.user._id)
-    return (
+
+  componentDidMount() {
+    this.props.refreshUser()
+  }
+
+  render(){
+    if (!this.props.user) {
+      return(<Redirect to='/' />)
+    }
+    return(
       <div>
-        <div>Profile
+        <div className='profile-container'>
+          <div className='profile-container-left'>
+            <h2>{this.props.user.firstname}</h2>
+            <h2>{this.props.user.lastname}</h2>
+            <h2>{this.props.user.email}</h2>
+          </div>
+          <div className='profile-countainer-right' >
+            <Appointments
+              user={this.props.user}
+            />
+          </div>
+        </div>
+        <div>
           <form onSubmit={this.handleSubmit}>
             <label htmlFor="submit-chat">Chat with me!</label>
-            <input id="submit-chat" type="submit" />
+            <input id="submit-chat" type="submit"/>
           </form>
           {this.renderRedirect()}
         </div>

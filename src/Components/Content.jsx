@@ -6,12 +6,14 @@ import Goat from './Pages/Goat';
 import Messages from './Pages/Messages';
 import Profile from './Pages/Profile';
 import Login from './Pages/Login';
+import Signup from './Pages/Signup'
 
 import Chat from './Subcomponents/Chat'
 
 class Content extends Component {
   render(){
     return(
+<<<<<<< HEAD
       <div>
         <Switch>
           <Route exact path='/' component={Home} />
@@ -26,6 +28,23 @@ class Content extends Component {
             } />
           <Route path='/chat' component={Chat} />
         </Switch>
+=======
+      <div className="content">
+        <Route exact path='/' component={Home} />
+        <Route path='/browse' component={Browse} />
+        <Route path='/goat/:goatId' component={Goat} />
+        <Route path='/messages' component={Messages} />
+        <Route path='/profile' render={
+            () => <Profile user={this.props.user} refreshUser={this.props.refreshUser} />
+          } />
+        <Route path='/signup' render={
+            () => <Signup user={this.props.user} refreshUser={this.props.refreshUser} />
+          } />
+        <Route path='/login' render={
+            () => <Login user={this.props.user} refreshUser={this.props.refreshUser} />
+          } />
+        <Route path='/chat' component={Chat} />
+>>>>>>> a342b0a367a616082560c25730fc42cc6fe02f4e
       </div>
 
     );
