@@ -12,7 +12,7 @@ import Chat from './Subcomponents/Chat'
 class Content extends Component {
   render(){
     return(
-      <div>
+      <div className="content">
         <Route exact path='/' component={Home} />
         <Route path='/browse' component={Browse} />
         <Route path='/goat/:goatId' component={Goat} />
