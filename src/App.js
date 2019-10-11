@@ -14,6 +14,7 @@ class App extends Component {
       goatId: 43253,
       date: null,
       focused: null,
+      user: null
     };
   }
 
@@ -46,7 +47,7 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-          <Nav refreshUser={this.getUser} />
+          <Nav refreshUser={this.getUser} user={this.state.user} />
           <Content user={this.state.user} refreshUser={this.getUser} />
         </div>
       </Router>

@@ -5,11 +5,16 @@ class Nav extends Component {
    logoutUser = (e) => {
     e.preventDefault();
     localStorage.removeItem("mernToken");
-    this.getUser();
+    this.props.refreshUser();
   }
+  componentDidMount(){
+    console.log(this.props.user)
 
+  }
   render(){
-    return(
+    let links;
+    if (this.props.user) {
+      links =
       <nav>
         <span>
           <Link to="/">MunchMyLawn</Link>
@@ -24,12 +29,31 @@ class Nav extends Component {
           <Link to="/profile">Profile</Link>
         </span>
         <span>
+          <a href="/" onClick={this.logoutUser}>Logout</a>
+        </span>
+      </nav>
+    }
+    else if (!this.props.user){
+      links =
+      <nav>
+        <span>
+          <Link to="/">MunchMyLawn</Link>
+        </span>
+        <span>
+          <Link to="/browse">Browse</Link>
+        </span>
+        <span>
           <Link to="/login">Login</Link>
         </span>
         <span>
-          Signout
+          <Link to="/signup">Signup</Link>
         </span>
       </nav>
+    }
+    return(
+      <div>
+        {links}
+      </div>
     );
   }
 }

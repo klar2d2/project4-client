@@ -1,4 +1,6 @@
 html, body {
+  font-family: 'Overpass', sans-serif;
+  font-family: 'Roboto', sans-serif;
   padding: 0;
   margin: 0;
   width: 100%;
@@ -69,20 +71,36 @@ nav {
   background-repeat: no-repeat;
   background-size: cover;
 }
+
 .login-form {
 
 }
 
 .bg-video__content {
+  z-index: -1;
   position: absolute;
   left: 0;
   top: 0;
   height: auto;
   width: 100%;
+  background-image: linear-gradient(to right bottom, #7ed56fc0, #88573Bc0);
 }
 
 .bg-video {
+  text-align: center;
   position: relative;
   height: 95vh;
   width: 100%;
+}
+
+.header-container {
+  top: 40%;
+  width: 100%;
+  position: absolute;
+}
+
+.header-main {
+  text-transform: uppercase;
+  font-size: 60px;
+  font-weight: 600;
 }
