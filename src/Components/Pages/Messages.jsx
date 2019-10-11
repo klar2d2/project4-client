@@ -13,8 +13,10 @@ state = {
       <div>
         <div>Munch My Lawn Messages</div>
         <div className="chat-app">
+          <div className="chat-wrap">
           <ChatList user={this.state.user}/>
           <Chat recipient={this.state.recipient} user={this.state.user}/>
+          </div>
         </div>
       </div>
     );

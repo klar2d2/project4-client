@@ -13,40 +13,24 @@ import Chat from './Subcomponents/Chat'
 class Content extends Component {
   render(){
     return(
-<<<<<<< HEAD
-      <div>
+      <div className="content">
         <Switch>
           <Route exact path='/' component={Home} />
           <Route path='/browse' component={Browse} />
           <Route path='/goat/:goatId' component={Goat} />
           <Route path='/messages' component={Messages} />
           <Route path='/profile' render={
-              () => <Profile user={this.props.user} />
+              () => <Profile user={this.props.user} refreshUser={this.props.refreshUser} />
+            } />
+          <Route path='/signup' render={
+              () => <Signup user={this.props.user} refreshUser={this.props.refreshUser} />
             } />
           <Route path='/login' render={
               () => <Login user={this.props.user} refreshUser={this.props.refreshUser} />
             } />
           <Route path='/chat' component={Chat} />
         </Switch>
-=======
-      <div className="content">
-        <Route exact path='/' component={Home} />
-        <Route path='/browse' component={Browse} />
-        <Route path='/goat/:goatId' component={Goat} />
-        <Route path='/messages' component={Messages} />
-        <Route path='/profile' render={
-            () => <Profile user={this.props.user} refreshUser={this.props.refreshUser} />
-          } />
-        <Route path='/signup' render={
-            () => <Signup user={this.props.user} refreshUser={this.props.refreshUser} />
-          } />
-        <Route path='/login' render={
-            () => <Login user={this.props.user} refreshUser={this.props.refreshUser} />
-          } />
-        <Route path='/chat' component={Chat} />
->>>>>>> a342b0a367a616082560c25730fc42cc6fe02f4e
       </div>
-
     );
   }
 }

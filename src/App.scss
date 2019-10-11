@@ -33,9 +33,15 @@ nav {
 }
 
 .chat-app {
-  display: flex;
+  
   margin: 0 auto;
   padding: 30px 50px;
+}
+.chat-wrap {
+  -webkit-box-shadow: 3px 3px 5px 6px #ccc;
+  -moz-box-shadow:    3px 3px 5px 6px #ccc;
+  box-shadow:         3px 3px 5px 6px #ccc;
+  display: flex;
 }
 .chat-container {
   border: 1px solid brown;
@@ -43,6 +49,7 @@ nav {
   max-height: 50vh;
   display: flex;
   align-items: center;
+
 }
 .all-messages {
   max-height: 5vh;
@@ -56,7 +63,6 @@ nav {
 .chat-list {
   height: 40vh;
   max-width: 30vw;
-  border: 1px solid brown;
   background-color: rgba(0, 255, 208, 0.345);
 }
 
@@ -70,10 +76,6 @@ nav {
   height: 5vh;
 }
 
-.chat-notify {
-  position: absolute;
-  bottom: 55px;
-}
 
 .hero {
   width: 100%;
@@ -82,13 +84,6 @@ nav {
   background-repeat: no-repeat;
   background-size: cover;
 }
-<<<<<<< HEAD
-=======
-
-.login-form {
-
-}
->>>>>>> a342b0a367a616082560c25730fc42cc6fe02f4e
 
 .bg-video__content {
   z-index: -1;

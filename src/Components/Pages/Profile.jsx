@@ -1,12 +1,10 @@
 import React, { Component, Suspense } from 'react';
 import Appointments from '../Subcomponents/Appointments'
 import { Redirect } from 'react-router-dom'
-<<<<<<< HEAD
-=======
+
 import axios from 'axios';
 import { LOCAL_HOST } from '../../constants'
 import moment from 'moment'
->>>>>>> a342b0a367a616082560c25730fc42cc6fe02f4e
 
 class Profile extends Component {
 
