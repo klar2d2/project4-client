@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import Appointments from '../Subcomponents/Appointments'
 import { Redirect } from 'react-router-dom'
-import axios from 'axios';
-import { LOCAL_HOST } from '../../constants'
 
 class Profile extends Component {
 
@@ -30,8 +28,8 @@ class Profile extends Component {
   renderRedirect = () => {
     if (this.state.redirect) {
       return <Redirect to={{
-        pathname: '/chat',
-        state: { recipient: this.state.goatId, user: this.state.user._id }
+        pathname: '/messages',
+        state: { recipient: this.state.goatId, user: this.state.user }
       }} />
     }
   }
@@ -46,18 +44,7 @@ class Profile extends Component {
           </form>
           {this.renderRedirect()}
         </div>
-        <div>Profile
-          <form onSubmit={this.handleSubmit}>
-            <label htmlFor="submit-chat">Chat with me!</label>
-            <input id="submit-chat" type="submit"/>
-          </form>
-          {this.renderRedirect()}
-        </div>
       </div>
-<<<<<<< HEAD
-=======
-
->>>>>>> 696ad3bd73ccbc6b309850a09a827583a8d9d8a6
     );
   }
 }

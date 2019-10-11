@@ -15,25 +15,27 @@ class Chat extends Component {
     }
 
     componentDidMount() {
-        let goatId
-        let userId
-        if (this.props.location.state.user.isGoat) {
-            goatId = this.props.location.state.user._id
-            userId = this.props.location.state.recipient
+        let recipient;
+        let user;
+        // console.log(this.props.user)
+        if (this.props.user.isGoat) {
+            recipient = this.props.user._id
+            user = this.props.recipient
         }
         else {
-            userId = this.props.location.state.user._id
-            goatId = this.props.location.state.recipient
+            user = this.props.user._id
+            recipient = this.props.recipient
         }
-        console.log(goatId, userId)
-        axios.post(SERVER + `/chat`, { userId, goatId })
+        console.log(recipient, user)
+        axios.post(LOCALHOST + `chat`, { user, recipient })
             .then(response => {
                 console.log(response)
             })
             .catch(err => {
                 console.log(err)
             })
-        const socket = io(`${SERVER}/${userId}-${goatId}`)
+           
+        const socket = io(`${LOCALHOST}${user}-${recipient}`)
         socket.on('add message', (mssg) => {
             let messageArray = this.state.messages;
             messageArray.push(mssg)
@@ -47,12 +49,12 @@ class Chat extends Component {
                 notify: `${currentUser} is typing`
             })
         })
-        this.callMessageDb(this.props.location.state.user._id, this.props.location.state.recipient)
+        this.callMessageDb(this.props.user._id, this.props.recipient)
         this.setState({socket})
     }
 
     callMessageDb = (currentUser, recipient) => {
-        axios.get(SERVER + '/message', {
+        axios.get(LOCALHOST + 'message', {
             currentUser,
             recipient
         })
@@ -72,19 +74,16 @@ class Chat extends Component {
 
     formOnSubmit = (e) => {
         e.preventDefault();
-        console.log(this.props.location.state.user)
-        this.state.socket.emit('add message', this.state.input, this.props.location.state.user, this.props.location.state.recipient)
-        this.setState({
-            tag: false
-        })
+        console.log(this.props.recipient, this.props.user._id)
+       
+        this.state.socket.emit('add message', this.state.input, this.props.user._id, this.props.recipient)
     }
 
     handleChange = (e) => {
         this.setState({
             [e.target.name]: e.target.value,
-            tag: true
         })
-        this.state.socket.emit('is typing', this.props.location.state.user)
+        this.state.socket.emit('is typing', this.props.user)
     }
 
     render() {
