@@ -10,7 +10,7 @@ state = {
 
 componentDidMount() {
   console.log(this.props.location.state.user)
-  console.log('This is the goat maiiiiin!', this.props.location.state.recipient)
+  console.log('This is the goat man!', this.props.location.state.recipient)
 }
 
   render(){
