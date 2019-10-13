@@ -6,29 +6,33 @@ html, body {
   width: 100%;
   height: 100%;
 }
-nav span{
-  margin: 5px 0px 5px 0px;
-}
 
 nav a {
   text-decoration: none;
 }
 
 nav {
-  background-color: grey;
-  height: 50px;
+  background-color: #6d4c3d;
+  height: 10vh;
   display: grid;
-  justify-items: left;
-  text-align: center;
+  align-items: center;
+}
+
+.nav-button {
+  width: 100px;
+  height: 60px;
+  margin-right: 20px;
+  color: white;
+  border-style: solid;
+  border-width: 1px;
+  padding: 5px;
+  border-radius: 5px;
 }
 
 @media (min-width: 30rem){
   nav {
-    grid-template-columns: 1fr auto auto auto auto;
+    grid-template-columns: 1fr auto auto auto auto ;
     justify-items: start;
-  }
-  nav span{
-    margin: 0px 5px 0px 5px;
   }
 }
 
@@ -125,19 +129,31 @@ nav {
 .bg-video {
   text-align: center;
   position: relative;
+  
   height: 95vh;
   width: 100%;
 }
 
 .header-container {
+  background: #6d4c3d;
+  opacity: .9;
   top: 40%;
-  width: 100%;
+  width: 40%;
+  margin-left: 30%;
+  padding: 1%;
   position: absolute;
+  border-radius: 10px;
+}
+
+.header-content {
+  opacity: 1;
 }
 
 .header-main {
+  color: #488B49;
+  // text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
   text-transform: uppercase;
-  font-size: 60px;
+  font-size: 40px;
   font-weight: 600;
 }
 .goat-avatar {
@@ -150,15 +166,15 @@ nav {
   height: 100vh;
   width: 100%;
   overflow: auto;
-  display: grid;
-  grid-template-columns: auto;
-  justify-content: space-around;
+  // display: grid;
+  // grid-template-columns: auto;
+  // justify-content: space-around;
 }
 
 .goat-card {
   display: grid;
   margin-bottom: 20px;
-  width: 100%;
+  width: 90%;
   grid-template-columns: 40% 1fr;
   -webkit-box-shadow: 3px 3px 5px 6px #ccc;
   -moz-box-shadow:    3px 3px 5px 6px #ccc;
@@ -169,7 +185,7 @@ nav {
   height: 60%;
   width: 100%;
   display: grid;
-  grid-template-columns: 30% auto;
+  grid-template-columns: 25% auto;
 }
 
 .map-container {
@@ -177,4 +193,55 @@ nav {
   height: 80%;
   padding: 5%;
   margin: auto;
+}
+
+.signup-form {
+  display: grid;
+  grid-template-columns: 25%;
+  justify-content: center;
+}
+
+.signup-radio {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  justify-content: center;
+}
+
+.login-form {
+  display: grid;
+  grid-template-columns: 25%;
+  justify-content: center;
+}
+
+.browse-button {
+  font-size: 35px;
+  background-color: transparent;
+  border-color: #488B49;
+  border-style: solid;
+  border-width: 2px;
+}
+
+.btn:link,
+.btn:visited {
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 15px 40px;
+    display: inline-block;
+    border-radius: 100px;
+    transition: all .2s; /*  transition must be put on the unactivated state */
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0,0,0,.2);
+}
+
+.btn:active {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 10px rgba(0,0,0,.2);
+}
+
+.btn-white {
+  background-color: #fff;
+  color: #777;
 }
