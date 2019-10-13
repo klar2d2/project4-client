@@ -47,8 +47,8 @@ class Goat extends Component {
   renderRedirect = () => {
     if (this.state.redirect) {
       return <Redirect to={{
-        pathname: `/messages/${this.props.user}`,
-        state: { recipient: this.state.goatId, user: this.props.user }
+        pathname: `/messages`,
+        state: { recipient: this.props.goatId, user: this.props.user }
       }} />
     }
   }

@@ -19,7 +19,7 @@ componentDidMount() {
         <div>Munch My Lawn Messages</div>
         <div className="chat-app">
           <div className="chat-wrap">
-            <Chat recipient={this.state.recipient} user={this.state.user}/>
+            <Chat recipient={this.props.location.state.recipient} user={this.props.location.state.user}/>
             <ChatList user={this.state.user}/>
           </div>
         </div>

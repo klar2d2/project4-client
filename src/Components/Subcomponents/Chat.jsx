@@ -16,6 +16,7 @@ class Chat extends Component {
     }
     
     componentDidMount() {
+        console.log(this.props.user)
         let recipient;
         let user;
         if (this.props.user.isGoat) {
