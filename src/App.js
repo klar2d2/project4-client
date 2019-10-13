@@ -2,8 +2,8 @@
 import React, { Component } from 'react';
 import './App.scss';
 import { BrowserRouter as Router } from 'react-router-dom';
-import Nav from './Components/Subcomponents/Nav';
-import Content from './Components/Content';
+import Nav from './components/Subcomponents/Nav';
+import Content from './components/Content';
 import axios from 'axios'
 
 class App extends Component {

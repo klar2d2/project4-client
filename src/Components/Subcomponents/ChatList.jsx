@@ -5,13 +5,17 @@ import {LOCALHOST} from '../../constants'
 class ChatList extends Component {
 
     state = {
-        userId: this.props.user._id
+        userId: this.props.user._id, 
+        chats: []
     }
 
     componentDidMount(){
         axios.get(LOCALHOST + 'message/:userId')
         .then(response => {
             console.log(response)
+            this.setState({
+                chats: response.data
+            })
         })
         .catch(err => {
             console.log(err)
