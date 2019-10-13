@@ -3,7 +3,8 @@ import moment from 'moment';
 import Calendar from '../Subcomponents/Calendar';
 import Reviews from '../Subcomponents/Reviews';
 import axios from 'axios'
-import {CREATE_APPOINTMENT, GET_GOATS_APPOINTMENTS} from '../../constants'
+import {Redirect} from 'react-router-dom'
+import {CREATE_APPOINTMENT, GET_GOATS_APPOINTMENTS, SERVER, LOCALHOST} from '../../constants'
 class Goat extends Component {
   state = {
     date: '',
@@ -11,7 +12,45 @@ class Goat extends Component {
     goatName: '',
     clientId: '',
     location: '',
-    appointments: []
+    appointments: [], 
+    redirect: false
+  }
+  
+  componentDidMount(props) {
+    this.getCurrentGoat();
+    this.getAppointments()
+    
+  }
+
+  getCurrentGoat = () => {
+  axios.get(LOCALHOST + '/goat/:id')
+    .then(response => {
+      console.log(response)
+      this.setState({
+        response
+      })
+
+    })
+    .catch(err => {
+      console.log(err)
+    })
+
+  }
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    this.setState({
+      redirect: true
+    })
+  }
+
+  renderRedirect = () => {
+    if (this.state.redirect) {
+      return <Redirect to={{
+        pathname: '/messages',
+        state: { recipient: this.state.goatId, user: this.props.user }
+      }} />
+    }
   }
 
   getAppointments = () => {
@@ -33,10 +72,7 @@ class Goat extends Component {
     })
   }
 
-  componentDidMount() {
-    this.getAppointments()
-  }
-
+  
   render() {
 
 
@@ -49,6 +85,13 @@ class Goat extends Component {
         </div>
         <Calendar appointments={[moment(), moment().add(10, 'days')]} />
         <Reviews />
+        <div>
+          <form onSubmit={this.handleSubmit}>
+            <label htmlFor="submit-chat">Chat with me!</label>
+            <input id="submit-chat" type="submit"/>
+          </form>
+          {this.renderRedirect()}
+        </div>
       </div>
     );
   }
