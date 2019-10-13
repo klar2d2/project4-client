@@ -22,14 +22,19 @@ class Calendar extends Component {
 
   render() {
     return (
-      <SingleDatePicker
-        isDayBlocked={this.isDayBlocked}
-        date={this.state.date}
-        onDateChange={this.onDateChange}
-        focused={this.state.focused}
-        onFocusChange={this.onFocusChange}
-        id="calendar"
-      />
+      <div>
+        <SingleDatePicker
+          isDayBlocked={this.isDayBlocked}
+          date={this.state.date}
+          onDateChange={this.onDateChange}
+          focused={this.state.focused}
+          onFocusChange={this.onFocusChange}
+          id="calendar"
+        />
+        <form>
+          <input type='submit' />
+        </form>
+      </div>
     );
   }
 }

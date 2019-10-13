@@ -15,7 +15,9 @@ class Content extends Component {
     return(
       <div className="content">
         <Route exact path='/' component={Home} />
-        <Route path='/browse' component={Browse} />
+        <Route path='/browse' render={
+            () => <Browse user={this.props.user} refreshUser={this.props.refreshUser} />
+          } />
         <Route path='/goat/:goatId' component={Goat} />
         <Route path='/messages' component={Messages} />
         <Route path='/profile' render={

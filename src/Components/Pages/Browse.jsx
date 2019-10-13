@@ -3,6 +3,7 @@ import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 import Map from '../Subcomponents/Map';
 import GoatDisplay from '../Subcomponents/GoatDisplay';
+import { Link } from 'react-router-dom';
 import { GET_GOATS } from '../../constants';
 
 class Browse extends Component {
@@ -17,10 +18,12 @@ class Browse extends Component {
     axios.get(GET_GOATS)
       .then((response) => {
         this.setState({ goats: response.data.users })
+        console.log(response.data.users)
       })
       .catch((err) => {
         console.log(err)
       })
+
   }
 
   goToGoat = (goat) => {
@@ -28,8 +31,18 @@ class Browse extends Component {
   }
   render() {
     const goatDisplays = this.state.goats.map((goat) => {
-      <GoatDisplay goat={goat} key={goat._id}}
-        />})
+      console.log(goat)
+    return(
+      <Link to={{
+          pathname: `/goat/${goat._id}`,
+          state: {
+            oneGoat: goat,
+            user: this.props.user
+          }
+        }}>
+        <GoatDisplay goat={goat} key={goat._id} />
+      </Link>)
+  })
     return (
       <div className="browse-display">
         <div className="goats-display">

@@ -1,16 +1,15 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
+
 
 class Nav extends Component {
    logoutUser = (e) => {
     e.preventDefault();
     localStorage.removeItem("mernToken");
     this.props.refreshUser();
-  }
-  componentDidMount(){
-    console.log(this.props.user)
 
   }
+
   render(){
     let links;
     if (this.props.user) {
@@ -29,7 +28,7 @@ class Nav extends Component {
           <Link to="/profile">Profile</Link>
         </span>
         <span>
-          <a href="/" onClick={this.logoutUser}>Logout</a>
+          <Link to="/" onClick={this.logoutUser}>Logout</Link>
         </span>
       </nav>
     }

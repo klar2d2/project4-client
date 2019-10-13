@@ -34,6 +34,8 @@ class Goat extends Component {
   }
 
   componentDidMount() {
+    const oneGoat = this.props.location.state.oneGoat
+    console.log(oneGoat)
     this.getAppointments()
   }
 
@@ -43,12 +45,12 @@ class Goat extends Component {
     return(
       <div>
         <div className='profile-container-left'>
-          <h2>{this.props.user.firstname}</h2>
-          <h2>{this.props.user.lastname}</h2>
-          <h2>{this.props.user.email}</h2>
+          <h1>{this.props.location.state.oneGoat.firstname}</h1>
+          <h2>{this.props.location.state.oneGoat.email}</h2>
+          <h2>{this.props.location.state.oneGoat.phone}</h2>
         </div>
-        <Calendar appointments={[moment(), moment().add(10, 'days')]} />
-        <Reviews />
+        <Calendar goat={this.props.location.state.oneGoat} appointments={[moment(), moment().add(10, 'days')]} />
+        <Reviews user={this.props.location.state.user} goat={this.props.location.state.oneGoat} />
       </div>
     );
   }
