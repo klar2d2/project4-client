@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios';
-import {LOCALHOST} from '../../constants'
+import {LOCALHOST, SERVER} from '../../constants'
 
 class ChatList extends Component {
 
@@ -11,7 +11,7 @@ class ChatList extends Component {
 
     componentDidMount(){
         console.log(this.props.user._id)
-        axios.get(LOCALHOST + `message/${this.props.user._id}`)
+        axios.get(SERVER + `message/${this.props.user._id}`)
         .then(response => {
             console.log(response)
             this.setState({

@@ -28,7 +28,7 @@ class Chat extends Component {
             recipient = this.props.recipient
         }
         this.callMessageDb(user, recipient) 
-        this.socket = io(LOCALHOST, { query: `room=${user}-${recipient}`});
+        this.socket = io(SERVER, { query: `room=${user}-${recipient}`});
         this.socket.on('add message', (mssg) => {
             let messageArray = this.state.messages;
             messageArray.push(mssg)
@@ -51,7 +51,7 @@ class Chat extends Component {
 
     callMessageDb = (currentUser, recipient) => {
         console.log(currentUser, recipient)
-        axios.get(LOCALHOST + `/message/${currentUser}/${recipient}`)
+        axios.get(SERVER + `/message/${currentUser}/${recipient}`)
         .then(response => {
             console.log(response);
             let messageArray = this.state.messages;

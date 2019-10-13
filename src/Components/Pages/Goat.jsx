@@ -25,7 +25,7 @@ class Goat extends Component {
   }
 
   getCurrentGoat = () => {
-  axios.get(LOCALHOST + `/goat/${this.props.goatId}`)
+  axios.get(SERVER + `/goat/${this.props.goatId}`)
     .then(response => {
       console.log(response.data.user)
       this.setState({
