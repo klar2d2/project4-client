@@ -19,11 +19,11 @@ export const UPDATE_APPOINTMENT = (appointmentId) => {
 }
 
 export const GET_ALL_REVIEWS = SERVER + '/reviews';
-export const GET_REVIEW = (reviewsId) => {
-  return SERVER + `reviews/${reviewsId}`;
+export const GET_REVIEW = (goatId) => {
+  return SERVER + `reviews/${goatId}`;
 }
-export const CREATE_REVIEW = (reviewsId) => {
-  return SERVER + `/reviews/${reviewsId}`;
+export const CREATE_REVIEW = (goatId) => {
+  return SERVER + `/reviews/${goatId}`;
 }
 export const UPDATE_REVIEW = (reviewsId) => {
   return SERVER + `/reviews/${reviewsId}`;
@@ -38,5 +38,3 @@ export const GET_USER = (userId) => {
 export const GET_GOATS = SERVER + '/user/goats'
 
 export const LOCAL_HOST = 'http://localhost:3001/';
-
-

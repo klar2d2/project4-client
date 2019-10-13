@@ -5,7 +5,9 @@ import {CREATE_REVIEW} from '../../constants'
 class Reviews extends Component {
 
   state = {
-    clientId: this.props.user._id,
+    title: '',
+    content: '',
+    clientId: this.props.user._id || '',
     goatId: this.props.goat._id
   }
 
@@ -13,9 +15,16 @@ class Reviews extends Component {
     console.log(this.props.user)
   }
 
-  handleReview = () => {
+  handleReview = (e) => {
+    console.log(this.state)
+    e.preventDefault()
     axios.post(CREATE_REVIEW, this.state)
-    .then()
+    .then(response => {
+      console.log('review created', this.state)
+    })
+    .catch(err => {
+      console.log('Error in the axios post review route', err)
+    })
   }
 
   render(){

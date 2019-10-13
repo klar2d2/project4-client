@@ -26,9 +26,6 @@ class Browse extends Component {
 
   }
 
-  goToGoat = (goat) => {
-
-  }
   render() {
     const goatDisplays = this.state.goats.map((goat) => {
       console.log(goat)

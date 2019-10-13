@@ -26,7 +26,7 @@ class Goat extends Component {
     e.preventDefault()
     axios.post(CREATE_APPOINTMENT, this.state)
     .then(response => {
-      console.log("Apppointment created with", this.state)
+      console.log("Appointment created with", this.state)
     })
     .catch(err => {
       console.log('Error in the create Appointment route', err)
