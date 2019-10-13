@@ -9,9 +9,7 @@ class ChatList extends Component {
     }
 
     componentDidMount(){
-        axios.get(LOCALHOST + 'chatlist', {
-            userId: this.state.userId
-        })
+        axios.get(LOCALHOST + 'message/:userId')
         .then(response => {
             console.log(response)
         })

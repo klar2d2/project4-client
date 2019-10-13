@@ -17,7 +17,9 @@ class Content extends Component {
         <Switch>
           <Route exact path='/' component={Home} />
           <Route path='/browse' component={Browse} />
-          <Route path='/goat/:goatId' component={Goat} />
+          <Route path='/goat/:goatId' render={
+            () => <Goat user={this.props.user}/>
+            }/>
           <Route path='/messages' component={Messages} />
           <Route path='/profile' render={
               () => <Profile user={this.props.user} refreshUser={this.props.refreshUser} />
