@@ -10,8 +10,6 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      userId: 13254,
-      goatId: 43253,
       date: null,
       focused: null,
       user: null

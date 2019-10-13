@@ -18,19 +18,19 @@ class Goat extends Component {
   }
   
   componentDidMount() {
+    console.log(this.props)
     this.getCurrentGoat();
     this.getAppointments()
     
   }
 
   getCurrentGoat = () => {
-  axios.get(LOCALHOST + '/goat/:id')
+  axios.get(LOCALHOST + `/goat/${this.props.goatId}`)
     .then(response => {
-      console.log(response)
+      console.log(response.data.user)
       this.setState({
-        goatId: response.data.userId
+        goatId: response.data.user._id
       })
-
     })
     .catch(err => {
       console.log(err)
