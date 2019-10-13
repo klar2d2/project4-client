@@ -8,11 +8,12 @@ import {CREATE_APPOINTMENT, GET_GOATS_APPOINTMENTS, SERVER, LOCALHOST} from '../
 class Goat extends Component {
   state = {
     date: '',
-    goatId: '',
+    goatId: "",
     goatName: '',
     clientId: '',
     location: '',
     appointments: [], 
+    user: this.props.user,
     redirect: false
   }
   
@@ -23,11 +24,11 @@ class Goat extends Component {
   }
 
   getCurrentGoat = () => {
-  axios.get(SERVER + '/goat/:id')
+  axios.get(LOCALHOST + '/goat/:id')
     .then(response => {
       console.log(response)
       this.setState({
-        response
+        goatId: response.data.userId
       })
 
     })

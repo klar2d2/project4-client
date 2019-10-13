@@ -8,6 +8,11 @@ state = {
   recipient: this.props.location.state.recipient
 }
 
+componentDidMount() {
+  console.log(this.props.location.state.user)
+  console.log('This is the goat maiiiiin!', this.props.location.state.recipient)
+}
+
   render(){
     return(
       <div>
