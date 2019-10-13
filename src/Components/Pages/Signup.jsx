@@ -38,14 +38,16 @@ class Signup extends Component {
     }
     return(
       <div>
-        Signup
         <form className="signup-form" onSubmit={this.submitSignup}>
+          <h3>Signup</h3>
           <input type='text' name='firstname' placeholder='firstname'  onChange={(e) => this.setState({ firstname: e.target.value, message: '' })}/>
           <input type='text' name='lastname' placeholder='lastname'  onChange={(e) => this.setState({ lastname: e.target.value, message: '' })}/>
           <input type='text' name='phone' placeholder='phone'  onChange={(e) => this.setState({ firstname: e.target.value, message: '' })}/>
           <input type='text' name='email' placeholder='email' onChange={(e) => this.setState({ email: e.target.value, message: '' })}/>
-          <input type='radio' name='isGoat' checked='checked' onChange={(e) => this.setState({ isGoat: false , message: '' })} />Client
-          <input type='radio' name='isGoat' onChange={(e) => this.setState({ isGoat: true , message: '' })} />Goat
+          <span className="signup-radio">
+            <span><input type='radio' name='isGoat' checked='checked' onChange={(e) => this.setState({ isGoat: false , message: '' })} />Client</span>
+            <span><input type='radio' name='isGoat' onChange={(e) => this.setState({ isGoat: true , message: '' })} />Goat</span>
+          </span>
           <input type='password' name='password' placeholder='password' onChange={(e) => this.setState({ password: e.target.value, message: '' })}/>
           <input type='submit' />
         </form>
