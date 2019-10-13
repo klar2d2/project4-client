@@ -50,7 +50,8 @@ class Chat extends Component {
 
 
     callMessageDb = (currentUser, recipient) => {
-        axios.get(LOCALHOST + `message/${currentUser}/${recipient}`)
+        console.log(currentUser, recipient)
+        axios.get(LOCALHOST + `/message/${currentUser}/${recipient}`)
         .then(response => {
             console.log(response);
             let messageArray = this.state.messages;

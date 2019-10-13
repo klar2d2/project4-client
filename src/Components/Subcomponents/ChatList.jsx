@@ -10,6 +10,7 @@ class ChatList extends Component {
     }
 
     componentDidMount(){
+        console.log(this.props.user._id)
         axios.get(LOCALHOST + `message/${this.props.user._id}`)
         .then(response => {
             console.log(response)
