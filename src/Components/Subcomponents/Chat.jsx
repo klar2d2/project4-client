@@ -84,7 +84,7 @@ class Chat extends Component {
         let messagesDiv = this.state.messages.map((text, idx) => {
             return (
                 <div className="all-messages" key={idx}>
-                    <div>{text}</div>
+                    <div className="message-block">{text}</div>
                 </div>
             )
         })
@@ -101,7 +101,7 @@ class Chat extends Component {
                         <form onSubmit={this.formOnSubmit}>
                             <label htmlFor="chat-sender">User Name</label>
                             <input id="chat-sender" type="hidden" name="chat-sender" />
-                            <input id="chat-input" type="text" name="input" onChange={this.handleChange} />
+                            <input id="chat-input" type="text" name="input" onChange={this.handleChange} placeholder="type a message..."/>
                             <input type="submit" />
                         </form>
                     </div>

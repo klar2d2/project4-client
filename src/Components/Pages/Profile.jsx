@@ -33,7 +33,7 @@ class Profile extends Component {
     if (this.state.redirect) {
       return <Redirect to={{
         pathname: '/messages',
-        state: { recipient: this.state.goatId, user: this.state.user }
+        state: { recipient: this.state.goatId, user: this.props.user }
       }} />
     }
   }
