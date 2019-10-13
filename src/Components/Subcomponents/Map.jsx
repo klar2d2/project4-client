@@ -18,18 +18,18 @@ class Map extends Component {
 
   render(){
     const markers = this.props.goats.map((goat, i)=>{
-
+      console.log({goat})
       let lng = parseFloat(goat.address.longitude)
       let lat = parseFloat(goat.address.latitude)
       return (
         <div key={i}>
             <Marker latitude={lat} longitude={lng} anchor="bottom">
               <img src="https://imgur.com/llq4pzC.jpg" alt="goat" />
-            </Marker> 
+            </Marker>
         </div>)
 })
     return(
-      <MapGl 
+      <MapGl
         {...this.state.viewport}
         mapboxApiAccessToken={token}
         onViewportChange={this.onViewportChange}
@@ -37,7 +37,7 @@ class Map extends Component {
         children={this.props.children}
       >
         {markers}
-      </MapGl>            
+      </MapGl>
     );
   }
 }

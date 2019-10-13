@@ -1,5 +1,5 @@
-export const SERVER = 'https://peaceful-escarpment-58515.herokuapp.com';
-// export const SERVER = 'http://localhost:3001';
+//export const SERVER = 'https://peaceful-escarpment-58515.herokuapp.com';
+ export const SERVER = 'http://localhost:3001';
 
 export const SIGNUP = SERVER + '/auth/signup';
 export const LOGIN = SERVER + '/auth/login';
@@ -20,7 +20,7 @@ export const UPDATE_APPOINTMENT = (appointmentId) => {
 
 export const GET_ALL_REVIEWS = SERVER + '/reviews';
 export const GET_REVIEW = (goatId) => {
-  return SERVER + `reviews/${goatId}`;
+  return SERVER + `/reviews/${goatId}`;
 }
 export const CREATE_REVIEW = (goatId) => {
   return SERVER + `/reviews/${goatId}`;

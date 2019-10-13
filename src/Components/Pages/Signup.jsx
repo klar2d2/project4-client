@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios'
 import { Redirect } from "react-router-dom";
+import {SIGNUP} from '../../constants'
 
 class Signup extends Component {
 
@@ -17,7 +18,7 @@ class Signup extends Component {
   submitSignup= (e) => {
     e.preventDefault();
     console.log(this.state)
-    axios.post('https://peaceful-escarpment-58515.herokuapp.com/auth/signup', this.state)
+    axios.post(SIGNUP, this.state)
     .then((response) => {
       localStorage.setItem("mernToken", response.data.token);
       this.props.refreshUser();

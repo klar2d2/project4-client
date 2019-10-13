@@ -28,7 +28,6 @@ class Browse extends Component {
 
   render() {
     const goatDisplays = this.state.goats.map((goat) => {
-      console.log(goat)
     return(
       <Link to={{
           pathname: `/goat/${goat._id}`,
@@ -46,7 +45,7 @@ class Browse extends Component {
           {goatDisplays}
         </div>
         <div className="map-container">
-          <Map goats={this.state.goats}/>
+          <Map goats={this.state.goats} />
         </div>
       </div>
     );

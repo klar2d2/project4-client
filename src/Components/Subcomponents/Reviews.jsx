@@ -15,10 +15,16 @@ class Reviews extends Component {
     console.log(this.props.user)
   }
 
+  handleChange = (e) => {
+    const state = this.state;
+    state[e.currentTarget.name] = e.currentTarget.value;
+    this.setState(state)
+  }
+
   handleReview = (e) => {
-    console.log(this.state)
     e.preventDefault()
-    axios.post(CREATE_REVIEW, this.state)
+    console.log(this.state)
+    axios.post(CREATE_REVIEW(this.state.goatId), this.state)
     .then(response => {
       console.log('review created', this.state)
     })
@@ -41,8 +47,8 @@ class Reviews extends Component {
       newReview = <div className='new-review-box'>
         <h2>Submit a Review</h2>
         <form onSubmit={this.handleReview}>
-          <input type='text' name='title' placeholder='Review Title' onChange={(e) => this.setState({ title: e.target.value, message: '' })} />
-          <input className='review-textbox' name='content' type='textbox' placeholder='Contents' onChange={(e) => this.setState({ content: e.target.value, message: '' })} />
+          <input type='text' name='title' placeholder='Review Title' onChange={this.handleChange} />
+          <input className='review-textbox' name='content' type='textbox' placeholder='Contents' onChange={this.handleChange} />
           <input type='submit' />
         </form>
       </div>

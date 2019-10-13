@@ -5,6 +5,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import Nav from './Components/Subcomponents/Nav';
 import Content from './Components/Content';
 import axios from 'axios'
+import {CURRENT_USER} from './constants'
 
 class App extends Component {
   constructor(props) {
@@ -27,7 +28,7 @@ class App extends Component {
     let token = localStorage.getItem('mernToken')
     //If theres a token, try to use it ot get the user info
     if (token) {
-      axios.get(`https://peaceful-escarpment-58515.herokuapp.com/auth/current/user`, {
+      axios.get(CURRENT_USER, {
         headers: {'Authorization': `Bearer ${token}` }
       })
       .then(response => {
