@@ -68,8 +68,9 @@ class Chat extends Component {
     formOnSubmit = (e) => {
         e.preventDefault();
         console.log(this.props.recipient, this.props.user._id)
-       
-        this.socket.emit('add message', this.state.input, this.props.user._id, this.props.recipient)
+       if(this.state.input !== ""){
+           this.socket.emit('add message', this.state.input, this.props.user._id, this.props.recipient)
+       }
     }
 
     handleChange = (e) => {
@@ -102,7 +103,7 @@ class Chat extends Component {
                             <label htmlFor="chat-sender">User Name</label>
                             <input id="chat-sender" type="hidden" name="chat-sender" />
                             <input id="chat-input" type="text" name="input" onChange={this.handleChange} placeholder="type a message..."/>
-                            <input type="submit" />
+                            <input className="btn" type="submit" />
                         </form>
                     </div>
                 </div>

@@ -16,14 +16,14 @@ class Goat extends Component {
     redirect: false
   }
   
-  componentDidMount(props) {
+  componentDidMount() {
     this.getCurrentGoat();
     this.getAppointments()
     
   }
 
   getCurrentGoat = () => {
-  axios.get(LOCALHOST + '/goat/:id')
+  axios.get(SERVER + '/goat/:id')
     .then(response => {
       console.log(response)
       this.setState({
@@ -34,7 +34,6 @@ class Goat extends Component {
     .catch(err => {
       console.log(err)
     })
-
   }
 
   handleSubmit = (e) => {
@@ -88,7 +87,7 @@ class Goat extends Component {
         <div>
           <form onSubmit={this.handleSubmit}>
             <label htmlFor="submit-chat">Chat with me!</label>
-            <input id="submit-chat" type="submit"/>
+            <input className="btn" type="submit"/>
           </form>
           {this.renderRedirect()}
         </div>
