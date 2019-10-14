@@ -23,7 +23,6 @@ class Browse extends Component {
       .catch((err) => {
         console.log(err)
       })
-
   }
 
   render() {

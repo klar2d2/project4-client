@@ -50,7 +50,7 @@ class Goat extends Component {
           <h2>{this.props.location.state.oneGoat.phone}</h2>
         </div>
         <Calendar goat={this.props.location.state.oneGoat} appointments={[moment(), moment().add(10, 'days')]} />
-        <Reviews user={this.props.location.state.user} goat={this.props.location.state.oneGoat} />
+        <Reviews user={this.props.location.state.user}  goat={this.props.location.state.oneGoat} />
       </div>
     );
   }

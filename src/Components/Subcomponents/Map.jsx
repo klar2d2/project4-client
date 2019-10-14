@@ -18,7 +18,6 @@ class Map extends Component {
 
   render(){
     const markers = this.props.goats.map((goat, i)=>{
-      console.log({goat})
       let lng = parseFloat(goat.address.longitude)
       let lat = parseFloat(goat.address.latitude)
       return (

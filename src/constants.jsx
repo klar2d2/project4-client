@@ -25,11 +25,14 @@ export const GET_REVIEW = (goatId) => {
 export const CREATE_REVIEW = (goatId) => {
   return SERVER + `/reviews/${goatId}`;
 }
+export const GET_ONE_REVIEW = (reviewsId) => {
+  return SERVER + `/reviews/one/${reviewsId}`;
+}
 export const UPDATE_REVIEW = (reviewsId) => {
   return SERVER + `/reviews/${reviewsId}`;
 }
 export const DELETE_REVIEW = (reviewsId) => {
-  return SERVER + `/reviews/${reviewsId}`;
+  return SERVER + `/reviews/delete/${reviewsId}`;
 }
 
 export const GET_USER = (userId) => {
