@@ -8,33 +8,33 @@ import {CREATE_APPOINTMENT, GET_GOATS_APPOINTMENTS, SERVER, LOCALHOST} from '../
 class Goat extends Component {
   state = {
     date: '',
-    goatId: '',
+    goatId: "",
     goatName: '',
     clientId: '',
     location: '',
     appointments: [], 
+    user: this.props.user,
     redirect: false
   }
   
-  componentDidMount(props) {
+  componentDidMount() {
+    console.log(this.props)
     this.getCurrentGoat();
     this.getAppointments()
     
   }
 
   getCurrentGoat = () => {
-  axios.get(LOCALHOST + '/goat/:id')
+  axios.get(SERVER + `/goat/${this.props.goatId}`)
     .then(response => {
-      console.log(response)
+      console.log(response.data.user)
       this.setState({
-        response
+        goatId: response.data.user._id
       })
-
     })
     .catch(err => {
       console.log(err)
     })
-
   }
 
   handleSubmit = (e) => {
@@ -47,8 +47,8 @@ class Goat extends Component {
   renderRedirect = () => {
     if (this.state.redirect) {
       return <Redirect to={{
-        pathname: '/messages',
-        state: { recipient: this.state.goatId, user: this.props.user }
+        pathname: `/messages`,
+        state: { recipient: this.props.goatId, user: this.props.user }
       }} />
     }
   }
@@ -65,7 +65,7 @@ class Goat extends Component {
     e.preventDefault()
     axios.post(CREATE_APPOINTMENT, this.state)
     .then(response => {
-      console.log("Apppointment created with", this.state)
+      console.log("Appointment created with", this.state)
     })
     .catch(err => {
       console.log('Error in the create Appointment route', err)
@@ -77,7 +77,7 @@ class Goat extends Component {
 
 
     return(
-      <div>
+      <div className="goat">
         <div className='profile-container-left'>
           {/* <h2>{this.props.user.firstname}</h2>
           <h2>{this.props.user.lastname}</h2>
@@ -88,7 +88,7 @@ class Goat extends Component {
         <div>
           <form onSubmit={this.handleSubmit}>
             <label htmlFor="submit-chat">Chat with me!</label>
-            <input id="submit-chat" type="submit"/>
+            <input className="btn" type="submit"/>
           </form>
           {this.renderRedirect()}
         </div>

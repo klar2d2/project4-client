@@ -8,13 +8,17 @@ state = {
   recipient: this.props.location.state.recipient
 }
 
+componentDidMount() {
+  console.log(this.props.location.state.user)
+  console.log('This is the goat man!', this.props.location.state.recipient)
+}
+
   render(){
     return(
-      <div>
-        <div>Munch My Lawn Messages</div>
+      <div className="messages">
         <div className="chat-app">
           <div className="chat-wrap">
-            <Chat recipient={this.state.recipient} user={this.state.user}/>
+            <Chat recipient={this.props.location.state.recipient} user={this.props.location.state.user}/>
             <ChatList user={this.state.user}/>
           </div>
         </div>

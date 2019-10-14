@@ -27,7 +27,7 @@ class Chat extends Component {
             recipient = this.props.recipient
         }
         this.callMessageDb(user, recipient) 
-        this.socket = io(LOCALHOST, { query: `room=${user}-${recipient}`});
+        this.socket = io(SERVER, { query: `room=${user}-${recipient}`});
         this.socket.on('add message', (mssg) => {
             let messageArray = this.state.messages;
             messageArray.push(mssg)
@@ -49,7 +49,8 @@ class Chat extends Component {
 
 
     callMessageDb = (currentUser, recipient) => {
-        axios.get(LOCALHOST + `message/${currentUser}/${recipient}`)
+        console.log(currentUser, recipient)
+        axios.get(SERVER + `/message/${currentUser}/${recipient}`)
         .then(response => {
             console.log(response);
             let messageArray = this.state.messages;
@@ -68,8 +69,9 @@ class Chat extends Component {
     formOnSubmit = (e) => {
         e.preventDefault();
         console.log(this.props.recipient, this.props.user._id)
-       
-        this.socket.emit('add message', this.state.input, this.props.user._id, this.props.recipient)
+       if(this.state.input !== ""){
+           this.socket.emit('add message', this.state.input, this.props.user._id, this.props.recipient)
+       }
     }
 
     handleChange = (e) => {
@@ -99,10 +101,10 @@ class Chat extends Component {
                     </div>
                     <div className="chat-submit-form">
                         <form onSubmit={this.formOnSubmit}>
-                            <label htmlFor="chat-sender">User Name</label>
+                            <label htmlFor="chat-sender">{this.props.recipient}</label>
                             <input id="chat-sender" type="hidden" name="chat-sender" />
                             <input id="chat-input" type="text" name="input" onChange={this.handleChange} placeholder="type a message..."/>
-                            <input type="submit" />
+                            <input className="btn" type="submit" />
                         </form>
                     </div>
                 </div>
