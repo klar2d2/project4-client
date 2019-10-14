@@ -12,18 +12,16 @@ import Chat from './Subcomponents/Chat'
 
 class Content extends Component {
   render(){
+    console.log(this.props)
     return(
       <div className="content">
         <Switch>
           <Route exact path='/' component={Home} />
-          <Route path='/browse' component={Browse} />
-          {/* <Route path='/goat/:goatId' render={
-            () => <Goat user={this.props.user} refreshUser={this.props.refreshUser}/>
-            }/> */}
-          <Route exact path="/goat/:goatId" render={(path) =>
-            <Goat goatId={path.match.params.goatId} user={this.props.user}/>}
-            />
-          <Route path='/messages' component={Messages} />
+          <Route path='/browse' render={
+            () => <Browse user={this.props.user} />
+          } />
+          <Route path='/goat/:goatId' component={Goat}/>
+          <Route path='/messages' component={Messages}/>
           <Route path='/profile' render={
               () => <Profile user={this.props.user} refreshUser={this.props.refreshUser} />
             } />

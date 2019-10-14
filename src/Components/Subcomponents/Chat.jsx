@@ -49,7 +49,6 @@ class Chat extends Component {
 
 
     callMessageDb = (currentUser, recipient) => {
-        console.log(currentUser, recipient)
         axios.get(SERVER + `/message/${currentUser}/${recipient}`)
         .then(response => {
             console.log(response);

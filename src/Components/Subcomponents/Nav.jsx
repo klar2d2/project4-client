@@ -17,7 +17,12 @@ class Nav extends Component {
       links =(
         <div>
           <span>
-            <Link to="/profile" className="nav-button">Profile</Link>
+            <Link to={{
+              pathname: "/profile",
+              state: {
+                user: this.props.user
+              }
+            }} className="nav-button">Profile</Link>
           </span>
           <span>
             <a href="/" onClick={this.logoutUser} className="nav-button">Logout</a>
@@ -46,10 +51,18 @@ class Nav extends Component {
             </Link>
           </span>
           <span>
-            <Link to="/browse" className="nav-button">Browse</Link>
+            <Link to={{
+              pathname: "/browse",
+              state: {
+                user: this.props.user
+              }}} className="nav-button">Browse</Link>
           </span>
           <span>
-            <Link to="/messages" className="nav-button">Messages</Link>
+            <Link to={{
+              pathname: "/messages",
+              state: {
+                user: this.props.user
+              }}} className="nav-button">Messages</Link>
           </span>
         {links}
         </nav>

@@ -3,14 +3,20 @@ import moment from 'moment';
 import Calendar from '../Subcomponents/Calendar';
 import Reviews from '../Subcomponents/Reviews';
 import axios from 'axios'
-import {Redirect} from 'react-router-dom'
+import {Redirect, Link} from 'react-router-dom'
 import {CREATE_APPOINTMENT, GET_GOATS_APPOINTMENTS, SERVER, LOCALHOST} from '../../constants'
 class Goat extends Component {
   state = {
     date: '',
+<<<<<<< Updated upstream
     goatId: "",
     goatName: '',
     clientId: '',
+=======
+    goatId: this.props.location.state.goat._id || '',
+    goatName: this.props.location.state.goat.firstname || '',
+    clientId: this.props.location.state.user._id || '',
+>>>>>>> Stashed changes
     location: '',
     appointments: [], 
     user: this.props.user,
@@ -20,12 +26,16 @@ class Goat extends Component {
   componentDidMount() {
     console.log(this.props)
     this.getCurrentGoat();
-    this.getAppointments()
+    // this.getAppointments()
     
   }
 
   getCurrentGoat = () => {
+<<<<<<< Updated upstream
   axios.get(SERVER + `/goat/${this.props.goatId}`)
+=======
+  axios.get(SERVER + `/goat/${this.state.goatId}`)
+>>>>>>> Stashed changes
     .then(response => {
       console.log(response.data.user)
       this.setState({
@@ -44,14 +54,15 @@ class Goat extends Component {
     })
   }
 
-  renderRedirect = () => {
-    if (this.state.redirect) {
-      return <Redirect to={{
-        pathname: `/messages`,
-        state: { recipient: this.props.goatId, user: this.props.user }
-      }} />
-    }
-  }
+  // renderRedirect = () => {
+
+  //   if (this.state.redirect) {
+  //     return <Redirect to={{
+  //       pathname: '/messages',
+  //       state: { recipient: this.state.goatId, user: this.props.user }
+  //     }} />
+  //   }
+  // }
 
   getAppointments = () => {
     axios.get(GET_GOATS_APPOINTMENTS)
@@ -74,7 +85,7 @@ class Goat extends Component {
 
   
   render() {
-
+    console.log(this.state)
 
     return(
       <div className="goat">
@@ -85,6 +96,7 @@ class Goat extends Component {
         </div>
         <Calendar appointments={[moment(), moment().add(10, 'days')]} />
         <Reviews />
+<<<<<<< Updated upstream
         <div>
           <form onSubmit={this.handleSubmit}>
             <label htmlFor="submit-chat">Chat with me!</label>
@@ -92,7 +104,16 @@ class Goat extends Component {
           </form>
           {this.renderRedirect()}
         </div>
+=======
+        <Link to={{
+          pathname: '/messages',
+          state: {recipient: this.state.goatId,
+                  user: this.props.location.state.user
+                 }
+          }}>Chat with me Here</Link>
+>>>>>>> Stashed changes
       </div>
+
     );
   }
 }

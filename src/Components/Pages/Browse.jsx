@@ -29,7 +29,10 @@ class Browse extends Component {
     return(
       
       <Link to={
-        { pathname:`/goat/${goat._id}`}
+        { pathname:`/goat/${goat._id}`,
+          state: {goat: goat,
+                  user: this.props.user}
+        }
         }>
         <GoatDisplay goat={goat} key={goat._id} />
       </Link>)
