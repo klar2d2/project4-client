@@ -96,22 +96,12 @@ class Goat extends Component {
         </div>
         <Calendar appointments={[moment(), moment().add(10, 'days')]} />
         <Reviews />
-<<<<<<< Updated upstream
-        <div>
-          <form onSubmit={this.handleSubmit}>
-            <label htmlFor="submit-chat">Chat with me!</label>
-            <input className="btn" type="submit"/>
-          </form>
-          {this.renderRedirect()}
-        </div>
-=======
         <Link to={{
           pathname: '/messages',
           state: {recipient: this.state.goatId,
                   user: this.props.location.state.user
                  }
           }}>Chat with me Here</Link>
->>>>>>> Stashed changes
       </div>
 
     );
