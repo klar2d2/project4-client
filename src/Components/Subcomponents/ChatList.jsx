@@ -10,10 +10,10 @@ class ChatList extends Component {
     }
 
     componentDidMount(){
-        console.log(this.props.user._id)
-        axios.get(SERVER + `message/${this.props.user._id}`)
+      
+        axios.get(SERVER + `/message/${this.props.user._id}`)
         .then(response => {
-            console.log(response)
+            console.log(response.data)
             this.setState({
                 chats: response.data
             })

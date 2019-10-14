@@ -16,7 +16,6 @@ class Chat extends Component {
     }
     
     componentDidMount() {
-        console.log(this.props.user)
         let recipient;
         let user;
         if (this.props.user.isGoat) {
@@ -102,7 +101,7 @@ class Chat extends Component {
                     </div>
                     <div className="chat-submit-form">
                         <form onSubmit={this.formOnSubmit}>
-                            <label htmlFor="chat-sender">User Name</label>
+                            <label htmlFor="chat-sender">{this.props.recipient}</label>
                             <input id="chat-sender" type="hidden" name="chat-sender" />
                             <input id="chat-input" type="text" name="input" onChange={this.handleChange} placeholder="type a message..."/>
                             <input className="btn" type="submit" />

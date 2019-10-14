@@ -15,8 +15,7 @@ componentDidMount() {
 
   render(){
     return(
-      <div>
-        <div>Munch My Lawn Messages</div>
+      <div className="messages">
         <div className="chat-app">
           <div className="chat-wrap">
             <Chat recipient={this.props.location.state.recipient} user={this.props.location.state.user}/>

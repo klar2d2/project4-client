@@ -35,7 +35,9 @@ nav {
     justify-items: start;
   }
 }
-
+.messages {
+  background-image: url('https://1igc0ojossa412h1e3ek8d1w-wpengine.netdna-ssl.com/wp-content/uploads/2018/04/topographic.jpg')
+}
 .chat-app {
   margin: 0 auto;
   padding: 30px 100px;
@@ -53,16 +55,18 @@ nav {
   max-height: 50vh;
   display: flex;
   align-items: center;
+ 
 }
 
 .message-block {
-  background-color: rgb(244, 244, 244);
+  background-color: rgba(244, 244, 244, 0.954);
   padding: 15px;
   border: 1px solid white;
   border-radius: 1px;
   max-width: 20vw;
 }
 .message-display {
+  background-color: rgba(255, 255, 255, 0.95);
   overflow: scroll;
   border: 2px solid rgb(45, 45, 45);
   min-height: 35vh;
@@ -72,9 +76,11 @@ nav {
 }
 
 .chat-list {
+  text-align: center;
   height: 35vh;
   min-width: 40vw;
-  background-color: rgba(0, 255, 208, 0.345);
+  background-color: rgba(255, 255, 255, 0.95);
+  border: 2px solid rgb(45, 45, 45);
 }
 
 .chat-notify {
