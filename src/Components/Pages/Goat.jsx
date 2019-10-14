@@ -77,7 +77,7 @@ class Goat extends Component {
 
 
     return(
-      <div>
+      <div className="goat">
         <div className='profile-container-left'>
           {/* <h2>{this.props.user.firstname}</h2>
           <h2>{this.props.user.lastname}</h2>
