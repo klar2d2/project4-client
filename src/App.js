@@ -5,6 +5,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import Nav from './components/Subcomponents/Nav';
 import Content from './components/Content';
 import axios from 'axios'
+import Footer from '../src/components/Subcomponents/Footer'
 
 class App extends Component {
   constructor(props) {
@@ -46,6 +47,7 @@ class App extends Component {
         <div className="App">
           <Nav refreshUser={this.getUser} user={this.state.user} />
           <Content user={this.state.user} refreshUser={this.getUser} />
+          <Footer />
         </div>
       </Router>
     );
