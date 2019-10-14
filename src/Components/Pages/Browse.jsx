@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 import Map from '../Subcomponents/Map';
 import GoatDisplay from '../Subcomponents/GoatDisplay';
@@ -10,7 +9,7 @@ class Browse extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      goats: []
+      goats: [],
     }
   }
 

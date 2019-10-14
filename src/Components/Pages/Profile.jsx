@@ -1,6 +1,7 @@
 import React, { Component, Suspense } from 'react';
 import Appointments from '../Subcomponents/Appointments'
 import { Redirect } from 'react-router-dom'
+
 import axios from 'axios';
 import { LOCAL_HOST } from '../../constants'
 import moment from 'moment'
@@ -8,17 +9,17 @@ import moment from 'moment'
 class Profile extends Component {
 
   state = {
-    goatId: '5d9e49838f8d24000e68d75c',
-    user: {
-      reviews: [
-        "5d9e8a6528faea00042a014b"
-      ],
-      appointments: [],
-      _id: "5d9d55b9813f7d000470d3e2",
-      firstname: "Gabe",
-      lastname: "Toledo",
-      email: "gtoledo342@gmail.com",
-    },
+    // goatId: '5d9e49838f8d24000e68d75c',
+    // user: {
+    //   reviews: [
+    //     "5d9e8a6528faea00042a014b"
+    //   ],
+    //   appointments: [],
+    //   _id: "5d9d55b9813f7d000470d3e2",
+    //   firstname: "Gabe",
+    //   lastname: "Toledo",
+    //   email: "gtoledo342@gmail.com",
+    // },
     redirect: false
   }
 
@@ -31,8 +32,8 @@ class Profile extends Component {
   renderRedirect = () => {
     if (this.state.redirect) {
       return <Redirect to={{
-        pathname: '/chat',
-        state: { recipient: this.state.goatId, user: this.state.user._id }
+        pathname: '/messages',
+        state: { recipient: this.state.goatId, user: this.props.user }
       }} />
     }
   }

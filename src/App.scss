@@ -6,47 +6,87 @@ html, body {
   width: 100%;
   height: 100%;
 }
-nav span{
-  margin: 5px 0px 5px 0px;
+.App {
+  display: block;
+  overflow: hidden;
+  position: relative;
+  height: 100%;
 }
-
 nav a {
   text-decoration: none;
 }
 
 nav {
-  background-color: grey;
-  height: 50px;
+  background-color: #6d4c3d;
+  height: 10vh;
   display: grid;
-  justify-items: left;
-  text-align: center;
+  align-items: center;
+}
+
+.nav-button {
+  width: 100px;
+  height: 60px;
+  margin-right: 20px;
+  color: white;
+  border-style: solid;
+  border-width: 1px;
+  padding: 5px;
+  border-radius: 5px;
 }
 
 @media (min-width: 30rem){
   nav {
-    grid-template-columns: 1fr auto auto auto auto;
+    grid-template-columns: 1fr auto auto auto auto ;
     justify-items: start;
   }
-  nav span{
-    margin: 0px 5px 0px 5px;
-  }
 }
-
+.messages {
+  min-height: 100vh;
+  background-image: url('https://1igc0ojossa412h1e3ek8d1w-wpengine.netdna-ssl.com/wp-content/uploads/2018/04/topographic.jpg');
+  background-size: cover;
+}
+.chat-app {
+  margin: 0 auto;
+  padding: 70px 100px;
+  display: flex;
+  justify-content: center;
+}
+.chat-wrap {
+  -webkit-box-shadow: 3px 3px 5px 6px #ccc;
+  -moz-box-shadow:    3px 3px 5px 6px #ccc;
+  box-shadow:         3px 3px 5px 6px #ccc;
+  display: flex;
+  background-color: #6d4c3dd7;
+}
 .chat-container {
-  border: 1px solid red;
   max-width: 100vw;
-  max-height: 50vh;
+  min-height: 60vh;
   display: flex;
   align-items: center;
 }
-.all-messages {
-  max-height: 5vh;
+
+.message-block {
+  background-color: rgba(228, 228, 228, 0.954);
+  padding: 15px;
+  border: 1px solid white;
+  border-radius: 1px;
+  max-width: 20vw;
+}
+.message-display {
+  background-color: rgba(255, 255, 255, 0.95);
+  overflow: scroll;
+  border: 2px solid rgb(45, 45, 45);
+  min-height: 55vh;
+  // resize: both;
+  // overflow: auto;
 }
 
-.message-display {
-  border: 1px solid black;
-  max-height: 40vh;
-  background-color: rgb(224, 237, 240);
+.chat-list {
+  text-align: center;
+  height: 55vh;
+  min-width: 40vw;
+  background-color: rgba(255, 255, 255, 0.95);
+  border: 2px solid rgb(45, 45, 45);
 }
 
 .chat-notify {
@@ -57,11 +97,33 @@ nav {
 
 #chat-input {
   height: 5vh;
+  
 }
 
-.chat-notify {
-  position: absolute;
-  bottom: 55px;
+.chat-submit-form {
+  color: white;
+}
+
+.btn:link,
+.btn:visited {
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 15px 40px;
+    display: inline-block;
+    border-radius: 100px;
+    transition: all .2s; 
+}
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0,0,0,.2);
+}
+.btn:active {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 10px rgba(0,0,0,.2);
+}
+.btn-white {
+  background-color: #fff;
+  color: #777;
 }
 
 .hero {
@@ -70,10 +132,6 @@ nav {
   background-image: url('http://placehold.jp/1600x900.png');
   background-repeat: no-repeat;
   background-size: cover;
-}
-
-.login-form {
-
 }
 
 .bg-video__content {
@@ -88,20 +146,30 @@ nav {
 .bg-video {
   text-align: center;
   position: relative;
+  
   height: 95vh;
   width: 100%;
 }
 
-
 .header-container {
+  background: rgba(109, 76, 61, .9);
   top: 40%;
-  width: 100%;
+  width: 40%;
+  margin-left: 30%;
+  padding: 1%;
   position: absolute;
+  border-radius: 10px;
+}
+
+.header-content {
+  opacity: 1;
 }
 
 .header-main {
+  color: #488B49;
+  // text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
   text-transform: uppercase;
-  font-size: 60px;
+  font-size: 40px;
   font-weight: 600;
 }
 .goat-avatar {
@@ -114,31 +182,111 @@ nav {
   height: 100vh;
   width: 100%;
   overflow: auto;
-  display: grid;
-  grid-template-columns: auto;
-  justify-content: space-around;
+  // display: grid;
+  // grid-template-columns: auto;
+  // justify-content: space-around;
 }
 
 .goat-card {
+  text-decoration: none;
   display: grid;
   margin-bottom: 20px;
-  width: 100%;
+  margin-right: 20px;
+  width: 85%;
   grid-template-columns: 40% 1fr;
-  -webkit-box-shadow: 3px 3px 5px 6px #ccc;
-  -moz-box-shadow:    3px 3px 5px 6px #ccc;
-  box-shadow:         3px 3px 5px 6px #ccc;
+  border-style: solid;
+  border-color: #939196;
+  border-width: 5px;
 }
 
 .browse-display {
-  height: 60%;
+  background-color: #acb0bd;
+  height: 100vh;
   width: 100%;
   display: grid;
-  grid-template-columns: 30% auto;
+  grid-template-columns: 25% auto;
 }
 
 .map-container {
   width: 80%;
   height: 80%;
-  padding: 5%;
-  margin: auto;
+}
+
+.signup-form {
+  display: grid;
+  grid-template-columns: 25%;
+  justify-content: center;
+}
+
+.signup-radio {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  justify-content: center;
+}
+
+.login-form {
+  display: grid;
+  grid-template-columns: 25%;
+  justify-content: center;
+}
+
+.browse-button {
+  font-size: 35px;
+  background-color: transparent;
+  border-color: #488B49;
+  border-style: solid;
+  border-width: 2px;
+}
+
+.btn:link,
+.btn:visited {
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 15px 40px;
+    display: inline-block;
+    border-radius: 100px;
+    transition: all .2s; /*  transition must be put on the unactivated state */
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0,0,0,.2);
+}
+
+.btn:active {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 10px rgba(0,0,0,.2);
+}
+
+.btn-white {
+  background-color: #fff;
+  color: #777;
+}
+.goat {
+  height: 100vh;
+}
+
+.footer {
+  background-color: #6d4c3d;
+  height: 5vh;
+  display: grid;
+  align-items: center;
+  color: white;
+
+}
+
+a:link {
+ text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+a:visited {
+ text-decoration: none;
+}
+
+a:active {
+ text-decoration: none;  
 }

@@ -6,13 +6,12 @@ import Nav from './Components/Subcomponents/Nav';
 import Content from './Components/Content';
 import axios from 'axios'
 import {CURRENT_USER} from './constants'
+import Footer from './Components/Subcomponents/Footer'
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      userId: 13254,
-      goatId: 43253,
       date: null,
       focused: null,
       user: null
@@ -49,6 +48,7 @@ class App extends Component {
         <div className="App">
           <Nav refreshUser={this.getUser} user={this.state.user} />
           <Content user={this.state.user} refreshUser={this.getUser} />
+          <Footer />
         </div>
       </Router>
     );

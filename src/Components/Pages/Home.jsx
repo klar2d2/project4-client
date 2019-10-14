@@ -11,8 +11,10 @@ class Home extends Component {
             your browser does not support a video tag
           </video>
           <div className="header-container">
-            <h1 className="header-main">Munch My Lawn</h1>
-            <h1>Hire a goat for your horticultural needs</h1>
+            <div className="header-content">
+              <h1 className="header-main">Hire a goat for your horticultural needs</h1>
+              <button className="btn btn-white" type="button">See Local Goats</button>
+            </div>
           </div>
         </div>
       </div>

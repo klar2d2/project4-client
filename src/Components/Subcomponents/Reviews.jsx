@@ -54,8 +54,6 @@ class Reviews extends Component {
       return response.data.reviews
     })
     .then((reviews) => {
-      console.log(reviews)
-
       Promise.all(
         reviews.map((review) => {
           return axios.get(GET_ONE_REVIEW(review))
