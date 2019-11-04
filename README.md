@@ -17,4 +17,4 @@ This project was put together by Gabe Jon and Kobe in order to learn new technol
   
 ### Screenshots
 
-[Munch My Lawn](https://i.imgur.com/ljic4vP.png)
+![Munch My Lawn](https://i.imgur.com/ljic4vP.png)
