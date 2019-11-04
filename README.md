@@ -17,4 +17,4 @@ This project was put together by Gabe Jon and Kobe in order to learn new technol
   
 ### Screenshots
 
-![Image of Homepage](https://imgur.com/a/y96MOK8)
+![Image of Homepage](https://imgur.com/ljic4vP)
